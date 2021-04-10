@@ -6,6 +6,8 @@ import 'package:theatrical_plays/pages/loading.dart';
 
 void main() {
   runApp(MaterialApp(
+    title: 'Theatrical_plays',
+    theme: ThemeData(primaryColor: Color(0x1d1d1d)),
     initialRoute: '/',
     routes: {
       '/': (context) => Loading(),
