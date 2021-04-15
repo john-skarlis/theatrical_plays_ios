@@ -29,13 +29,9 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: SnakeNavigationBar.color(
         height: 60,
         backgroundColor: MyColors().black,
-        //behaviour: SnakeBarBehaviour.floating,
         snakeShape: snakeShape,
-
         //shape: bottomBarShape,
         //padding: const EdgeInsets.all(12),
-
-        ///configuration for SnakeNavigationBar.color
         snakeViewColor: MyColors().cyan,
         selectedItemColor: SnakeShape.indicator == SnakeShape.indicator
             ? MyColors().cyan

@@ -1,6 +1,9 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/pages/home.dart';
 import 'package:theatrical_plays/pages/loading.dart';
+import 'package:theatrical_plays/pages/theaters.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -8,6 +11,7 @@ void main() {
     routes: {
       '/': (context) => Home(),
       '/home': (context) => Home(),
+      '/theaters': (context) => Theaters(),
     },
   ));
 }
