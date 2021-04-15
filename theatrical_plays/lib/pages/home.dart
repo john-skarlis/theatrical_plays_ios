@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
         backgroundColor: MyColors().black,
       ),
       bottomNavigationBar: SnakeNavigationBar.color(
-        height: 50,
+        height: 60,
         backgroundColor: MyColors().black,
         //behaviour: SnakeBarBehaviour.floating,
         snakeShape: snakeShape,
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
         onTap: (index) => setState(() => _selectedItemPosition = index),
         items: [
           const BottomNavigationBarItem(
-              icon: Icon(Icons.notifications), label: 'tickets'),
+              icon: Icon(Icons.theaters_outlined), label: 'theaters'),
           const BottomNavigationBarItem(
               icon: Icon(Icons.movie_outlined), label: 'movies'),
           const BottomNavigationBarItem(
