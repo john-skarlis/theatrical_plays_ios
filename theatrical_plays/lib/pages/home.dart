@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:theatrical_plays/using/colors.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,48 +9,53 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  /*ShapeBorder bottomBarShape = const RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(25)),
+  );*/
+  int _selectedItemPosition = 2;
+  SnakeShape snakeShape = SnakeShape.indicator;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(92, 92, 92, 1),
+      backgroundColor: MyColors().gray,
       appBar: AppBar(
         brightness: Brightness.dark,
         title: Text(
           'Theatrical plays',
-          style: TextStyle(color: Color.fromRGBO(113, 255, 250, 1)),
+          style: TextStyle(color: MyColors().cyan),
         ),
-        backgroundColor: Color.fromRGBO(29, 29, 29, 1),
+        backgroundColor: MyColors().black,
       ),
       bottomNavigationBar: SnakeNavigationBar.color(
         height: 50,
-        backgroundColor: Color.fromRGBO(29, 29, 29, 1),
-        //behaviour: snakeBarStyle,
-        snakeShape: SnakeShape.indicator,
-        //shape: shape,
-        //padding: padding,
-        currentIndex: 2,
+        backgroundColor: MyColors().black,
+        //behaviour: SnakeBarBehaviour.floating,
+        snakeShape: snakeShape,
+
+        //shape: bottomBarShape,
+        //padding: const EdgeInsets.all(12),
 
         ///configuration for SnakeNavigationBar.color
-        snakeViewColor: Color.fromRGBO(113, 255, 250, 1),
+        snakeViewColor: MyColors().cyan,
         selectedItemColor: SnakeShape.indicator == SnakeShape.indicator
-            ? Color.fromRGBO(113, 255, 250, 1)
+            ? MyColors().cyan
             : null,
-        unselectedItemColor: Color.fromRGBO(92, 92, 92, 1),
+        unselectedItemColor: MyColors().gray,
 
-        //showUnselectedLabels: showUnselectedLabels,
-        //showSelectedLabels: showSelectedLabels,
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
 
-        //currentIndex: _selectedItemPosition,
-        onTap: (index) {},
+        currentIndex: _selectedItemPosition,
+        onTap: (index) => setState(() => _selectedItemPosition = index),
         items: [
           const BottomNavigationBarItem(
               icon: Icon(Icons.notifications), label: 'tickets'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.movie_outlined), label: 'calendar'),
+              icon: Icon(Icons.movie_outlined), label: 'movies'),
           const BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined), label: 'home'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline), label: 'microphone'),
+              icon: Icon(Icons.person_outline), label: 'actors'),
           const BottomNavigationBarItem(
               icon: Icon(Icons.search), label: 'search')
         ],
