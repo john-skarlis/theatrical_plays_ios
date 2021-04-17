@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:theatrical_plays/pages/actors.dart';
+import 'package:theatrical_plays/pages/homescreen.dart';
+import 'package:theatrical_plays/pages/movies.dart';
+import 'package:theatrical_plays/pages/theaters.dart';
 import 'package:theatrical_plays/using/colors.dart';
 
 class Home extends StatefulWidget {
@@ -11,12 +15,22 @@ class _HomeState extends State<Home> {
   /*ShapeBorder bottomBarShape = const RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(25)),
   );*/
-  int _selectedItemPosition = 2;
   SnakeShape snakeShape = SnakeShape.indicator;
+  int _selectedItemPosition = 2;
+  final List<Widget> screens = [
+    Movies(),
+    Theaters(),
+    Homescreen(),
+    Actors(),
+  ];
+
+  Widget currentScreen = Home();
+  //https://www.youtube.com/watch?v=8YsO1FOLy5s
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors().gray,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         brightness: Brightness.dark,
         title: Text(
@@ -35,13 +49,19 @@ class _HomeState extends State<Home> {
         selectedItemColor: SnakeShape.indicator == SnakeShape.indicator
             ? MyColors().cyan
             : null,
-        unselectedItemColor: MyColors().gray,
+        unselectedItemColor: Colors.white,
 
         showUnselectedLabels: true,
         showSelectedLabels: true,
 
         currentIndex: _selectedItemPosition,
-        onTap: (index) => setState(() => _selectedItemPosition = index),
+        onTap: (index) {
+          setState(() {
+            _selectedItemPosition = index;
+            Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => Theaters()));
+          });
+        },
         items: [
           const BottomNavigationBarItem(
               icon: Icon(Icons.theaters_outlined), label: 'theaters'),
