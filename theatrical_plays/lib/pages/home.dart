@@ -60,8 +60,6 @@ class _HomeState extends State<Home> {
         onTap: (index) {
           setState(() {
             _selectedItemPosition = index;
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => Theaters()));
           });
         },
         items: [
