@@ -7,8 +7,8 @@ void main() {
     //initialRoute: '/home',
     routes: {
       '/': (context) => Home(),
-      '/home': (context) => Home(),
-      '/theaters': (context) => Theaters(),
+      //'/home': (context) => Home(),
+      //'/theaters': (context) => Theaters(),
     },
   ));
 }

@@ -60,6 +60,15 @@ class _HomeState extends State<Home> {
         onTap: (index) {
           setState(() {
             _selectedItemPosition = index;
+            if (index == 0) {
+              currentScreen = Theaters();
+            } else if (index == 1) {
+              currentScreen = Movies();
+            } else if (index == 2) {
+              currentScreen = Homescreen();
+            } else if (index == 3) {
+              currentScreen = Actors();
+            }
           });
         },
         items: [

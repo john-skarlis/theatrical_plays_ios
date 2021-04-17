@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 class Actors extends StatefulWidget {
@@ -8,6 +10,8 @@ class Actors extends StatefulWidget {
 class _ActorsState extends State<Actors> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Text("Actors"),
+    );
   }
 }

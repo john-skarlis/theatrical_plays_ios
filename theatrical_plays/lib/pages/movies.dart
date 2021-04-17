@@ -8,6 +8,8 @@ class Movies extends StatefulWidget {
 class _MoviesState extends State<Movies> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Text("Movies"),
+    );
   }
 }
