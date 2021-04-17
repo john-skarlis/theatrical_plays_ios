@@ -24,8 +24,10 @@ class _HomeState extends State<Home> {
     Actors(),
   ];
 
-  Widget currentScreen = Home();
+  Widget currentScreen = Homescreen();
   //https://www.youtube.com/watch?v=8YsO1FOLy5s
+
+  final PageStorageBucket bucket = PageStorageBucket();
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +106,10 @@ class _HomeState extends State<Home> {
           //Handle button tap
         },
       ),*/
+      body: PageStorage(
+        child: currentScreen,
+        bucket: bucket,
+      ),
     );
   }
 }
