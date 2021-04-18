@@ -15,7 +15,7 @@ class _Loading_actorsState extends State<Loading_actors> {
   Future<void> load_actors() async {
     try {
       Uri uri = Uri.parse("http://localhost:8080/api/people");
-      Response data = await get(uri);
+      Response data = await get(uri, headers: {"Accept": "application/json"});
       var json_data = jsonDecode(data.body);
 
       List<Actor> actors = [];
@@ -24,9 +24,9 @@ class _Loading_actorsState extends State<Loading_actors> {
         Actor actor = new Actor(
             old_actor['image'], old_actor['id'], old_actor['fullName']);
         actors.add(actor);
-        print(actor.image);
-        print(actor.fullName);
-        print(actor.id);
+        //print(actor.image);
+        //print(actor.fullName);
+        //print(actor.id);
       }
       Navigator.pushReplacement(
         context,
