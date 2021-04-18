@@ -4,6 +4,7 @@ import 'package:theatrical_plays/pages/actors.dart';
 import 'package:theatrical_plays/pages/homescreen.dart';
 import 'package:theatrical_plays/pages/movies.dart';
 import 'package:theatrical_plays/pages/theaters.dart';
+import 'package:theatrical_plays/pages/loading_actors.dart';
 import 'package:theatrical_plays/using/colors.dart';
 
 class Home extends StatefulWidget {
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
     Movies(),
     Theaters(),
     Homescreen(),
-    Actors(),
+    Loading_actors(),
   ];
 
   Widget currentScreen = Homescreen();
@@ -67,21 +68,21 @@ class _HomeState extends State<Home> {
             } else if (index == 2) {
               currentScreen = Homescreen();
             } else if (index == 3) {
-              currentScreen = Actors();
+              currentScreen = Loading_actors();
             }
           });
         },
         items: [
           const BottomNavigationBarItem(
-              icon: Icon(Icons.theaters_outlined), label: 'theaters'),
+              icon: Icon(Icons.theaters_outlined), label: 'Θέατρα'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.movie_outlined), label: 'movies'),
+              icon: Icon(Icons.movie_outlined), label: 'Παραστάσεις'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'home'),
+              icon: Icon(Icons.home_outlined), label: 'Αρχική'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline), label: 'actors'),
+              icon: Icon(Icons.person_outline), label: 'Ηθοποιοί'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.search), label: 'search')
+              icon: Icon(Icons.search), label: 'Αναζήτηση')
         ],
         selectedLabelStyle: const TextStyle(fontSize: 14),
         unselectedLabelStyle: const TextStyle(fontSize: 10),

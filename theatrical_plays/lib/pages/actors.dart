@@ -1,15 +1,15 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:theatrical_plays/models/actor.dart';
 
 class Actors extends StatefulWidget {
+  List<Actor> actors = [];
+  Actors(this.actors);
   @override
   _ActorsState createState() => _ActorsState();
 }
 
 class _ActorsState extends State<Actors> {
+  _ActorsState({this.actors});
   List<Actor> actors = [];
   Map data = {};
   @override

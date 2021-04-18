@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/actor.dart';
+import 'package:theatrical_plays/pages/actors.dart';
 
 class Loading_actors extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class _Loading_actorsState extends State<Loading_actors> {
   Future<void> load_actors() async {
     try {
       Uri uri = Uri.parse("http://localhost:8080/api/people");
-      var data = await get(uri);
+      Response data = await get(uri);
       var json_data = jsonDecode(data.body);
 
       List<Actor> actors = [];
@@ -27,8 +28,10 @@ class _Loading_actorsState extends State<Loading_actors> {
         print(actor.fullName);
         print(actor.id);
       }
-      Navigator.pushReplacementNamed(context, '/actors',
-          arguments: {'actors': actors});
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Actors(actors)),
+      );
     } on Exception catch (e) {
       print('error data');
     }
