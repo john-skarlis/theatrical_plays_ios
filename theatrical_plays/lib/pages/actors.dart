@@ -10,27 +10,24 @@ class Actors extends StatefulWidget {
 }
 
 class _ActorsState extends State<Actors> {
-  Future<List<Actors>> getActors() async {
-    Uri uri = Uri.parse("http://localhost:8080/api/people");
-    var data = await get(uri);
-    var json_data = jsonDecode(data.body);
-
-    List<Actor> actors = [];
-    for (var old_actor in json_data['data']['content']) {
-      Actor actor =
-          new Actor(old_actor['image'], old_actor['id'], old_actor['fullName']);
-      actors.add(actor);
-    }
-  }
-
+  List<Actor> actors = [];
+  Map data = {};
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
+    actors = data['actors'];
     return Scaffold(
       body: Container(
-        child: FutureBuilder(
-          future: getActors(),
-          builder: (context, snapshot) {},
-        ),
+        child: Text(data['actors'].toString()),
+        /*child: ListView.builder(
+            itemCount: actors.length,
+            itemBuilder: (context, int index) {
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: NetworkImage(actors[index].image),
+                ),
+              );
+            }),*/
       ),
     );
   }
