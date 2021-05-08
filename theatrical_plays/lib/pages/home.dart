@@ -49,17 +49,13 @@ class _HomeState extends State<Home> {
         height: 60,
         backgroundColor: MyColors().black,
         snakeShape: snakeShape,
-        //shape: bottomBarShape,
-        //padding: const EdgeInsets.all(12),
         snakeViewColor: MyColors().cyan,
         selectedItemColor: SnakeShape.indicator == SnakeShape.indicator
             ? MyColors().cyan
             : null,
         unselectedItemColor: Colors.white,
-
         showUnselectedLabels: true,
         showSelectedLabels: true,
-
         currentIndex: _selectedItemPosition,
         onTap: (index) {
           setState(() {
