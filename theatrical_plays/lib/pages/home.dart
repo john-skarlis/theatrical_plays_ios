@@ -13,18 +13,17 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  /*ShapeBorder bottomBarShape = const RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(25)),
-  );*/
+  //sbake bottom nav bar options initiallization
   SnakeShape snakeShape = SnakeShape.indicator;
   int _selectedItemPosition = 2;
+  //bottom nav bar screens
   final List<Widget> screens = [
     Movies(),
     Theaters(),
     Homescreen(),
     Loading_actors(),
   ];
-
+  //initiallize first screen
   Widget currentScreen = Homescreen();
   //https://www.youtube.com/watch?v=8YsO1FOLy5s
 
