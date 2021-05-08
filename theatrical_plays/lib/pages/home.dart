@@ -27,12 +27,15 @@ class _HomeState extends State<Home> {
   Widget currentScreen = Homescreen();
   //https://www.youtube.com/watch?v=8YsO1FOLy5s
 
+  //initialize page storage object to keep the selected page
   final PageStorageBucket bucket = PageStorageBucket();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //colors for letters in notification bar
       backgroundColor: Colors.white,
+      //initiallize appbar options and colors
       appBar: AppBar(
         brightness: Brightness.dark,
         title: Text(
