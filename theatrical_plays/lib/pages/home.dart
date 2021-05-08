@@ -44,6 +44,7 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: MyColors().black,
       ),
+      //bottom navigation bar size colors an snake shape
       bottomNavigationBar: SnakeNavigationBar.color(
         height: 60,
         backgroundColor: MyColors().black,
