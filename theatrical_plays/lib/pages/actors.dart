@@ -20,6 +20,7 @@ class _ActorsState extends State<Actors> {
             itemBuilder: (context, index) {
               return ListTile(
                 leading: CircleAvatar(
+                  radius: 30.0,
                   backgroundImage: NetworkImage(actors[index].image),
                 ),
                 title: Text(actors[index].fullName),

@@ -24,7 +24,8 @@ class _Loading_actorsState extends State<Loading_actors> {
 
       for (var old_actor in json_data['data']['content']) {
         if (old_actor['image'] == null) {
-          old_actor['image'] = 'images/avatar.jpg';
+          old_actor['image'] =
+              'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
         }
         Actor actor = new Actor(
             old_actor['image'], old_actor['id'], old_actor['fullName']);
