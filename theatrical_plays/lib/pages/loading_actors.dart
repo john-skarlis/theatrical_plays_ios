@@ -6,21 +6,26 @@ import 'package:http/http.dart';
 import 'package:theatrical_plays/models/actor.dart';
 import 'package:theatrical_plays/pages/actors.dart';
 
+import 'loading.dart';
+
 class Loading_actors extends StatefulWidget {
   @override
   _Loading_actorsState createState() => _Loading_actorsState();
 }
 
 class _Loading_actorsState extends State<Loading_actors> {
+  List<Actor> actors = [];
+  //load actos data from api
   Future<void> load_actors() async {
     try {
       Uri uri = Uri.parse("http://localhost:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var json_data = jsonDecode(data.body);
 
-      List<Actor> actors = [];
-
       for (var old_actor in json_data['data']['content']) {
+        if (old_actor['image'] == null) {
+          old_actor['image'] = 'images/avatar.jpg';
+        }
         Actor actor = new Actor(
             old_actor['image'], old_actor['id'], old_actor['fullName']);
         actors.add(actor);
@@ -28,10 +33,10 @@ class _Loading_actorsState extends State<Loading_actors> {
         //print(actor.fullName);
         //print(actor.id);
       }
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => Actors(actors)),
-      );
+      actors_screns.add(Actors(actors));
+      setState(() {
+        _current = 1;
+      });
     } on Exception catch (e) {
       print('error data');
     }
@@ -43,16 +48,11 @@ class _Loading_actorsState extends State<Loading_actors> {
     load_actors();
   }
 
+  int _current = 0;
+  final List<Widget> actors_screns = [Loading()];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(50.0),
-        child: SpinKitFadingCircle(
-          color: Colors.black,
-          size: 80.0,
-        ),
-      ),
-    );
+    return Scaffold(body: actors_screns.elementAt(_current));
   }
 }

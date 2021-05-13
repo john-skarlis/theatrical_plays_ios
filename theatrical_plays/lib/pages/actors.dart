@@ -11,20 +11,17 @@ class Actors extends StatefulWidget {
 class _ActorsState extends State<Actors> {
   _ActorsState({this.actors});
   List<Actor> actors = [];
-  //Map data = {};
   @override
   Widget build(BuildContext context) {
-    //data = ModalRoute.of(context).settings.arguments;
-    //actors = data['actors'];
     return Scaffold(
       body: Container(
         child: ListView.builder(
             itemCount: actors.length,
             itemBuilder: (context, index) {
               return ListTile(
-                /*leading: CircleAvatar(
+                leading: CircleAvatar(
                   backgroundImage: NetworkImage(actors[index].image),
-                ),*/
+                ),
                 title: Text(actors[index].fullName),
                 subtitle: Text(actors[index].id.toString()),
               );
