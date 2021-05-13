@@ -73,15 +73,15 @@ class _HomeState extends State<Home> {
         },
         items: [
           const BottomNavigationBarItem(
-              icon: Icon(Icons.theaters_outlined), label: 'Θέατρα'),
+              icon: Icon(Icons.theaters_outlined), label: 'Theaters'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.movie_outlined), label: 'Παραστάσεις'),
+              icon: Icon(Icons.movie_outlined), label: 'Movies'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined), label: 'Αρχική'),
+              icon: Icon(Icons.home_outlined), label: 'Home'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline), label: 'Ηθοποιοί'),
+              icon: Icon(Icons.person_outline), label: 'Actors'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.search), label: 'Αναζήτηση')
+              icon: Icon(Icons.search), label: 'Search')
         ],
         selectedLabelStyle: const TextStyle(fontSize: 14),
         unselectedLabelStyle: const TextStyle(fontSize: 10),
