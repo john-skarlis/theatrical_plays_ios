@@ -17,10 +17,10 @@ class _HomeState extends State<Home> {
   int _selectedItemPosition = 2;
   //bottom nav bar screens
   final List<Widget> screens = [
-    Movies(),
     Theaters(),
+    Movies(),
     Homescreen(),
-    Loading_actors(),
+    Loading_actors(0),
   ];
   //initiallize first screen
   Widget currentScreen = Homescreen();
@@ -60,13 +60,13 @@ class _HomeState extends State<Home> {
           setState(() {
             _selectedItemPosition = index;
             if (index == 0) {
-              currentScreen = Theaters();
+              currentScreen = screens[0];
             } else if (index == 1) {
-              currentScreen = Movies();
+              currentScreen = screens[1];
             } else if (index == 2) {
-              currentScreen = Homescreen();
+              currentScreen = screens[2];
             } else if (index == 3) {
-              currentScreen = Loading_actors();
+              currentScreen = screens[3];
             }
           });
         },

@@ -8,7 +8,7 @@ void main() {
     //initialRoute: '/home',
     routes: {
       '/': (context) => Home(),
-      '/actors': (context) => Loading_actors(),
+      //'/actors': (context) => Loading_actors(),
       //'/theaters': (context) => Theaters(),
     },
   ));

@@ -9,16 +9,21 @@ import 'package:theatrical_plays/pages/actors.dart';
 import 'loading.dart';
 
 class Loading_actors extends StatefulWidget {
+  int page;
+  Loading_actors(this.page);
   @override
-  _Loading_actorsState createState() => _Loading_actorsState();
+  _Loading_actorsState createState() => _Loading_actorsState(page: page);
 }
 
 class _Loading_actorsState extends State<Loading_actors> {
+  int page;
+  _Loading_actorsState({this.page});
   List<Actor> actors = [];
   //load actos data from api
   Future<void> load_actors() async {
     try {
-      Uri uri = Uri.parse("http://localhost:8080/api/people");
+      Uri uri =
+          Uri.parse("http://localhost:8080/api/people?page=${page}&size=20");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var json_data = jsonDecode(data.body);
 

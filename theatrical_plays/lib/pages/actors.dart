@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/actor.dart';
 import 'package:theatrical_plays/using/colors.dart';
 
-class Actors extends StatelessWidget {
+class Actors extends StatefulWidget {
   List<Actor> actors = [];
   Actors(this.actors);
+  @override
+  _ActorsState createState() => _ActorsState(actors: actors);
+}
+
+class _ActorsState extends State<Actors> {
+  List<Actor> actors = [];
+  _ActorsState({this.actors});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
