@@ -27,7 +27,9 @@ class _HomeState extends State<Home> {
   //https://www.youtube.com/watch?v=8YsO1FOLy5s
 
   //initialize page storage object to keep the selected page
-  final PageStorageBucket bucket = PageStorageBucket();
+  //final PageStorageBucket bucket = PageStorageBucket();
+
+  final PageController controller = PageController(initialPage: 2);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,8 @@ class _HomeState extends State<Home> {
         onTap: (index) {
           setState(() {
             _selectedItemPosition = index;
-            if (index == 0) {
+            controller.jumpToPage(index);
+            /*if (index == 0) {
               currentScreen = screens[0];
             } else if (index == 1) {
               currentScreen = screens[1];
@@ -67,7 +70,7 @@ class _HomeState extends State<Home> {
               currentScreen = screens[2];
             } else if (index == 3) {
               currentScreen = screens[3];
-            }
+            }*/
           });
         },
         items: [
@@ -85,9 +88,18 @@ class _HomeState extends State<Home> {
         selectedLabelStyle: const TextStyle(fontSize: 14),
         unselectedLabelStyle: const TextStyle(fontSize: 10),
       ),
-      body: PageStorage(
+      body: PageView(
+        controller: controller,
+        children: screens,
+        scrollDirection: Axis.horizontal,
+        onPageChanged: (index) {
+          setState(() {
+            _selectedItemPosition = index;
+          });
+        },
+        /*PageStorage(
         child: currentScreen,
-        bucket: bucket,
+        bucket: bucket,)*/
       ),
     );
   }

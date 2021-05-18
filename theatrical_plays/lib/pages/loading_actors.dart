@@ -35,11 +35,8 @@ class _Loading_actorsState extends State<Loading_actors> {
         Actor actor = new Actor(
             old_actor['image'], old_actor['id'], old_actor['fullName']);
         actors.add(actor);
-        //print(actor.image);
-        //print(actor.fullName);
-        //print(actor.id);
       }
-      actors_screns.add(Actors(actors));
+      actors_screns.add(Actors(actors, page));
       setState(() {
         _current = 1;
       });
