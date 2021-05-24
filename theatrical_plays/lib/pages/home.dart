@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
     Theaters(),
     Movies(),
     Homescreen(),
-    Loading_actors(0),
+    Loading_actors(),
   ];
   //initiallize first screen
   Widget currentScreen = Homescreen();

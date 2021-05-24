@@ -8,25 +8,21 @@ import 'package:theatrical_plays/pages/actors.dart';
 import 'loading.dart';
 
 class Loading_actors extends StatefulWidget {
-  int page;
-  Loading_actors(this.page);
   @override
-  _Loading_actorsState createState() => _Loading_actorsState(page: page);
+  _Loading_actorsState createState() => _Loading_actorsState();
 }
 
 class _Loading_actorsState extends State<Loading_actors> {
-  int page;
-  _Loading_actorsState({this.page});
+  _Loading_actorsState();
   List<Actor> actors = [];
   //load actos data from api
-  Future<void> load_actors() async {
+  Future<List<Actor>> load_actors() async {
     try {
-      Uri uri =
-          Uri.parse("http://localhost:8080/api/people?page=${page}&size=20");
+      Uri uri = Uri.parse("http://localhost:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
-      var json_data = jsonDecode(data.body);
+      var jsonData = jsonDecode(data.body);
 
-      for (var old_actor in json_data['data']['content']) {
+      for (var old_actor in jsonData['data']['content']) {
         if (old_actor['image'] == null) {
           old_actor['image'] =
               'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
@@ -35,26 +31,26 @@ class _Loading_actorsState extends State<Loading_actors> {
             old_actor['image'], old_actor['id'], old_actor['fullName']);
         actors.add(actor);
       }
-      actors_screns.add(Actors(actors, page));
-      setState(() {
-        _current = 1;
-      });
+      return actors;
     } on Exception catch (e) {
       print('error data');
     }
   }
 
   @override
-  void initState() {
-    super.initState();
-    load_actors();
-  }
-
-  int _current = 0;
-  final List<Widget> actors_screns = [Loading()];
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(body: actors_screns.elementAt(_current));
+    return Scaffold(
+        body: FutureBuilder(
+            future: load_actors(),
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
+              if (!snapshot.hasData) {
+                return Loading();
+              } else if (snapshot.hasError) {
+                return Text("error loading");
+              } else {
+                return Actors(actors);
+              }
+            }));
   }
 }

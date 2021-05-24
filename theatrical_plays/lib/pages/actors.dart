@@ -5,16 +5,14 @@ import 'package:theatrical_plays/using/colors.dart';
 
 class Actors extends StatefulWidget {
   List<Actor> actors = [];
-  int page;
-  Actors(this.actors, this.page);
+  Actors(this.actors);
   @override
-  _ActorsState createState() => _ActorsState(actors: actors, page: page);
+  _ActorsState createState() => _ActorsState(actors: actors);
 }
 
 class _ActorsState extends State<Actors> {
-  int page;
   List<Actor> actors = [];
-  _ActorsState({this.actors, this.page});
+  _ActorsState({this.actors});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +26,7 @@ class _ActorsState extends State<Actors> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Loading_actors(1)));
+                          builder: (context) => Loading_actors()));
                 },
                 leading: Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
