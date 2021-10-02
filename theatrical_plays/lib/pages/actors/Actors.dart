@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:theatrical_plays/models/actor.dart';
-import 'package:theatrical_plays/pages/loading_actors.dart';
-import 'package:theatrical_plays/using/colors.dart';
+import 'package:theatrical_plays/models/Actor.dart';
+import 'package:theatrical_plays/pages/actors/LoadingActors.dart';
+import 'package:theatrical_plays/using/MyColors.dart';
 
+// ignore: must_be_immutable
 class Actors extends StatefulWidget {
   List<Actor> actors = [];
   Actors(this.actors);
@@ -23,10 +24,8 @@ class _ActorsState extends State<Actors> {
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Loading_actors()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoadingActors()));
                 },
                 leading: Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),

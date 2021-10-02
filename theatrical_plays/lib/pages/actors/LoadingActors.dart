@@ -2,21 +2,21 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:theatrical_plays/models/actor.dart';
-import 'package:theatrical_plays/pages/actors.dart';
+import 'package:theatrical_plays/models/Actor.dart';
+import 'package:theatrical_plays/pages/actors/Actors.dart';
+import 'package:theatrical_plays/using/Loading.dart';
 
-import 'loading.dart';
-
-class Loading_actors extends StatefulWidget {
+class LoadingActors extends StatefulWidget {
   @override
-  _Loading_actorsState createState() => _Loading_actorsState();
+  _LoadingActorsState createState() => _LoadingActorsState();
 }
 
-class _Loading_actorsState extends State<Loading_actors> {
-  _Loading_actorsState();
+class _LoadingActorsState extends State<LoadingActors> {
+  _LoadingActorsState();
   List<Actor> actors = [];
   //load actos data from api
-  Future<List<Actor>> load_actors() async {
+  // ignore: missing_return
+  Future<List<Actor>> loadActors() async {
     try {
       Uri uri = Uri.parse("http://localhost:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
@@ -32,7 +32,7 @@ class _Loading_actorsState extends State<Loading_actors> {
         actors.add(actor);
       }
       return actors;
-    } on Exception catch (e) {
+    } on Exception {
       print('error data');
     }
   }
@@ -41,7 +41,7 @@ class _Loading_actorsState extends State<Loading_actors> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-            future: load_actors(),
+            future: loadActors(),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
               if (!snapshot.hasData) {

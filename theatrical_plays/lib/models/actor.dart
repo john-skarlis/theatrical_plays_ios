@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Actor {
   String image;
   int id;

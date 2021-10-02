@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:theatrical_plays/pages/home.dart';
+import 'package:theatrical_plays/pages/Home.dart';
 
 void main() {
   runApp(MaterialApp(

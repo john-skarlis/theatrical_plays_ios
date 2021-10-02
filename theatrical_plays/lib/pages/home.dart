@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
-import 'package:theatrical_plays/pages/homescreen.dart';
-import 'package:theatrical_plays/pages/movies.dart';
-import 'package:theatrical_plays/pages/theaters.dart';
-import 'package:theatrical_plays/pages/loading_actors.dart';
-import 'package:theatrical_plays/using/colors.dart';
+import 'package:theatrical_plays/pages/home/homescreen.dart';
+import 'package:theatrical_plays/pages/movies/movies.dart';
+import 'package:theatrical_plays/pages/theaters/theaters.dart';
+import 'package:theatrical_plays/using/MyColors.dart';
+
+import 'actors/LoadingActors.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -19,11 +20,11 @@ class _HomeState extends State<Home> {
   final List<Widget> screens = [
     Theaters(),
     Movies(),
-    Homescreen(),
-    Loading_actors(),
+    HomeScreen(),
+    LoadingActors()
   ];
   //initiallize first screen
-  Widget currentScreen = Homescreen();
+  Widget currentScreen = HomeScreen();
   //https://www.youtube.com/watch?v=8YsO1FOLy5s
 
   //initialize page storage object to keep the selected page
