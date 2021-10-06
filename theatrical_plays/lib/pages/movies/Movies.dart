@@ -32,7 +32,7 @@ class _MoviesState extends State<Movies> {
                   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                   child: CircleAvatar(
                     radius: 30.0,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Colors.black,
                     backgroundImage: NetworkImage(
                         'https://thumbs.dreamstime.com/z/print-178440812.jpg'),
                   ),
