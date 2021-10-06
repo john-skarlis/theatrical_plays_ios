@@ -12,7 +12,6 @@ class LoadingActors extends StatefulWidget {
 }
 
 class _LoadingActorsState extends State<LoadingActors> {
-  _LoadingActorsState();
   List<Actor> actors = [];
   //load actos data from api
   // ignore: missing_return

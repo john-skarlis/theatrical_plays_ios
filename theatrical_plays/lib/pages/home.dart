@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:theatrical_plays/pages/home/homescreen.dart';
-import 'package:theatrical_plays/pages/movies/movies.dart';
-import 'package:theatrical_plays/pages/theaters/theaters.dart';
+import 'package:theatrical_plays/pages/theaters/LoadingTheaters.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
 import 'actors/LoadingActors.dart';
+import 'movies/LoadingMovies.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,8 +18,8 @@ class _HomeState extends State<Home> {
   int _selectedItemPosition = 2;
   //bottom nav bar screens
   final List<Widget> screens = [
-    Theaters(),
-    Movies(),
+    LoadingTheaters(),
+    LoadingMovies(),
     HomeScreen(),
     LoadingActors()
   ];
