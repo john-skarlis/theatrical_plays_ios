@@ -30,10 +30,12 @@ class _MoviesState extends State<Movies> {
                 },
                 leading: Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-                  // child: CircleAvatar(
-                  //   radius: 30.0,
-                  //   backgroundImage: NetworkImage(movies[index].image),
-                  // ),
+                  child: CircleAvatar(
+                    radius: 30.0,
+                    backgroundColor: Colors.white,
+                    backgroundImage: NetworkImage(
+                        'https://thumbs.dreamstime.com/z/print-178440812.jpg'),
+                  ),
                 ),
                 title: Text(
                   movies[index].title,

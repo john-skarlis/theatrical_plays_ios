@@ -34,8 +34,9 @@ class _TheatersState extends State<Theaters> {
                   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                   child: CircleAvatar(
                     radius: 30.0,
+                    backgroundColor: Colors.white,
                     backgroundImage: NetworkImage(
-                        'https://pic.onlinewebfonts.com/svg/img_449320.png'),
+                        'https://thumbs.dreamstime.com/z/location-pin-icon-165980583.jpg'),
                   ),
                 ),
                 title: Text(
