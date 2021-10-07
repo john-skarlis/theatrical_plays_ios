@@ -17,7 +17,7 @@ class _LoadingActorsState extends State<LoadingActors> {
   // ignore: missing_return
   Future<List<Actor>> loadActors() async {
     try {
-      Uri uri = Uri.parse("http://localhost:8080/api/people");
+      Uri uri = Uri.parse("http://83.212.111.242:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 
