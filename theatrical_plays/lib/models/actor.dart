@@ -1,5 +1,5 @@
 class Actor {
-  String image;
+  List image;
   int id;
   String fullName;
 

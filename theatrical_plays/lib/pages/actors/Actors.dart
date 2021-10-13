@@ -29,12 +29,13 @@ class _ActorsState extends State<Actors> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => LoadingActors()));
+                    print(index);
                   },
                   leading: Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                     child: CircleAvatar(
                       radius: 30.0,
-                      backgroundImage: NetworkImage(actors[index].image),
+                      backgroundImage: NetworkImage(actors[index].image[0]),
                     ),
                   ),
                   title: Text(
