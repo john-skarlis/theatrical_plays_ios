@@ -29,7 +29,7 @@ class _ActorsState extends State<Actors> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => LoadingActors()));
-                    print(index);
+                    // print(index);
                   },
                   leading: Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),

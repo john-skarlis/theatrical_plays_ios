@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
+import 'package:theatrical_plays/pages/home/LoadingHomeScreen.dart';
 import 'package:theatrical_plays/pages/home/homescreen.dart';
 import 'package:theatrical_plays/pages/theaters/LoadingTheaters.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
@@ -20,11 +21,11 @@ class _HomeState extends State<Home> {
   final List<Widget> screens = [
     LoadingTheaters(),
     LoadingMovies(),
-    HomeScreen(),
+    LoadingHomeScreen(),
     LoadingActors()
   ];
   //initiallize first screen
-  Widget currentScreen = HomeScreen();
+  Widget currentScreen = LoadingHomeScreen();
   //https://www.youtube.com/watch?v=8YsO1FOLy5s
 
   //initialize page storage object to keep the selected page
