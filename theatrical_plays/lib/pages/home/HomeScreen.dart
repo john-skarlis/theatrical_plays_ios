@@ -27,8 +27,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 200.0,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(latestMovies[index].mediaUrl))),
-                    child: Text("fveef"),
+                            image: NetworkImage(latestMovies[index].mediaUrl ??
+                                'https://i2.wp.com/9to5google.com/wp-content/uploads/sites/4/2017/08/youtube_logo_dark.jpg?w=2500&quality=82&strip=all&ssl=1'),
+                            fit: BoxFit.cover)),
+                  ),
+                  ListTile(
+                    title: Text(
+                      latestMovies[index].title,
+                      style: TextStyle(color: MyColors().cyan),
+                    ),
+                    subtitle: Text(
+                      latestMovies[index].producer,
+                      style: TextStyle(color: MyColors().gray),
+                    ),
                   )
                 ],
               );

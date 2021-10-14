@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:theatrical_plays/pages/home/LoadingHomeScreen.dart';
-import 'package:theatrical_plays/pages/home/homescreen.dart';
 import 'package:theatrical_plays/pages/theaters/LoadingTheaters.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 

@@ -17,20 +17,21 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
   // ignore: missing_return
   Future<List<Movie>> loadLatestMovies() async {
     try {
-      Uri uri = Uri.parse("http://83.212.111.242:8080/api/productions/latest");
+      Uri uri = Uri.parse(
+          "http://83.212.111.242:8080/api/productions/search?q=mediaURL~youtube");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 
-      for (var old_movie in jsonData['data']['content']) {
-        if (old_movie['mediaUrl'] != null) {
+      for (var oldMovie in jsonData['data']['content']) {
+        if (oldMovie['mediaUrl']?.isEmpty ?? true) {
           Movie movie = new Movie(
-              old_movie['id'],
-              old_movie['title'],
-              old_movie['ticketUrl'],
-              old_movie['producer'],
-              old_movie['mediaUrl'],
-              old_movie['duration'],
-              old_movie['description']);
+              oldMovie['id'],
+              oldMovie['title'],
+              oldMovie['ticketUrl'],
+              oldMovie['producer'],
+              oldMovie['mediaUrl'],
+              oldMovie['duration'],
+              oldMovie['description']);
           movies.add(movie);
         }
       }
