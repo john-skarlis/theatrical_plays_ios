@@ -32,6 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             fit: BoxFit.cover)),
                   ),
                   ListTile(
+                    contentPadding: const EdgeInsets.all(8.0),
+                    dense: true,
                     title: Text(
                       latestMovies[index].title,
                       style: TextStyle(color: MyColors().cyan),
