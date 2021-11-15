@@ -21,13 +21,13 @@ class _LoadingActorsState extends State<LoadingActors> {
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 
-      for (var old_actor in jsonData['data']['content']) {
-        if (old_actor['image']?.isEmpty ?? true) {
-          old_actor['image'].add(
-              'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg');
+      for (var oldActor in jsonData['data']['content']) {
+        if (oldActor['image'] == null) {
+          oldActor['image'] =
+              'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
         }
-        Actor actor = new Actor(
-            old_actor['image'], old_actor['id'], old_actor['fullName']);
+        Actor actor =
+            new Actor(oldActor['image'], oldActor['id'], oldActor['fullName']);
         actors.add(actor);
       }
       return actors;

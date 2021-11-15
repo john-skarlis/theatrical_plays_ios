@@ -35,7 +35,7 @@ class _ActorsState extends State<Actors> {
                     padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                     child: CircleAvatar(
                       radius: 30.0,
-                      backgroundImage: NetworkImage(actors[index].image[0]),
+                      backgroundImage: NetworkImage(actors[index].image),
                     ),
                   ),
                   title: Text(
