@@ -62,6 +62,7 @@ class _MovieInfoState extends State<MovieInfo> {
                   physics: BouncingScrollPhysics(),
                   children: [
                     MovieProfile(),
+                    Divider(color: MyColors().gray),
                     Center(
                         child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 5, 0, 15),

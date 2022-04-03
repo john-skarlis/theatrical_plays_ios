@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Movie.dart';
+import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
 import 'LoadingMovies.dart';
@@ -25,8 +26,10 @@ class _MoviesState extends State<Movies> {
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoadingMovies()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MovieInfo(movies[index].id)));
                 },
                 leading: Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
