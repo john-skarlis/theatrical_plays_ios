@@ -39,6 +39,7 @@ class _HomeState extends State<Home> {
       backgroundColor: Colors.white,
       //initiallize appbar options and colors
       appBar: AppBar(
+        // ignore: deprecated_member_use
         brightness: Brightness.dark,
         title: Text(
           'Theatrical plays',

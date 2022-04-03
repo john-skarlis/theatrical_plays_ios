@@ -22,7 +22,7 @@ class _LoadingActorsState extends State<LoadingActors> {
       var jsonData = jsonDecode(data.body);
 
       for (var oldActor in jsonData['data']['content']) {
-        if (oldActor['image'] == null) {
+        if (oldActor['image'] == '') {
           oldActor['image'] =
               'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
         }

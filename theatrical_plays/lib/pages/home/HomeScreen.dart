@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   List<Movie> latestMovies = [];
   HomeScreen(this.latestMovies);
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     subtitle: Text(
                       latestMovies[index].producer,
-                      style: TextStyle(color: MyColors().gray),
+                      style: TextStyle(color: MyColors().cyan),
                     ),
                   )
                 ],

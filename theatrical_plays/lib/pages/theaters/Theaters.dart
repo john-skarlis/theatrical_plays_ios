@@ -23,27 +23,30 @@ class _TheatersState extends State<Theaters> {
             itemCount: theaters.length,
             itemBuilder: (context, index) {
               return ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      //open the tapped item
-                      MaterialPageRoute(
-                          builder: (context) => LoadingTheaters()));
-                },
-                leading: Padding(
-                  padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-                  child: CircleAvatar(
-                    radius: 30.0,
-                    backgroundColor: Colors.white,
-                    backgroundImage: NetworkImage(
-                        'https://thumbs.dreamstime.com/z/location-pin-icon-165980583.jpg'),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        //open the tapped item
+                        MaterialPageRoute(
+                            builder: (context) => LoadingTheaters()));
+                  },
+                  leading: Padding(
+                    padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+                    child: CircleAvatar(
+                      radius: 30.0,
+                      backgroundColor: Colors.white,
+                      backgroundImage: NetworkImage(
+                          'https://thumbs.dreamstime.com/z/location-pin-icon-165980583.jpg'),
+                    ),
                   ),
-                ),
-                title: Text(
-                  theaters[index].title,
-                  style: TextStyle(color: MyColors().cyan),
-                ),
-              );
+                  title: Text(
+                    theaters[index].title,
+                    style: TextStyle(color: MyColors().cyan),
+                  ),
+                  subtitle: Text(
+                    theaters[index].address,
+                    style: TextStyle(color: MyColors().cyan),
+                  ));
             }),
       ),
     );

@@ -22,15 +22,15 @@ class _LoadingMoviesState extends State<LoadingMovies> {
     var jsonData = jsonDecode(data.body);
 
     try {
-      for (var old_movie in jsonData['data']['content']) {
+      for (var oldMovie in jsonData['data']['content']) {
         Movie movie = new Movie(
-            old_movie['id'],
-            old_movie['title'],
-            old_movie['ticketUrl'],
-            old_movie['producer'],
-            old_movie['mediaUrl'],
-            old_movie['duration'],
-            old_movie['description']);
+            oldMovie['id'],
+            oldMovie['title'],
+            oldMovie['ticketUrl'],
+            oldMovie['producer'],
+            oldMovie['mediaUrl'],
+            oldMovie['duration'],
+            oldMovie['description']);
 
         movies.add(movie);
       }

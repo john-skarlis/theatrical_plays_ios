@@ -1,7 +1,6 @@
-import 'package:alphabet_list_scroll_view/alphabet_list_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Actor.dart';
-import 'package:theatrical_plays/pages/actors/LoadingActors.dart';
+import 'package:theatrical_plays/pages/actors/ActorInfo.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
 // ignore: must_be_immutable
@@ -28,7 +27,7 @@ class _ActorsState extends State<Actors> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => LoadingActors()));
+                            builder: (context) => ActorInfo(actors[index].id)));
                     // print(index);
                   },
                   leading: Padding(
