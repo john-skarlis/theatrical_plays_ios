@@ -8,6 +8,7 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // widget to build the profile style of an actor
     return Center(
         child: Column(
       children: [

@@ -19,6 +19,7 @@ class _ActorsState extends State<Actors> {
     return Scaffold(
         backgroundColor: MyColors().black,
         body: Container(
+          //show the list with the actors
           child: ListView.builder(
               itemCount: actors.length,
               itemBuilder: (context, index) {

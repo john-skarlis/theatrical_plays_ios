@@ -21,6 +21,7 @@ class _ActorInfoState extends State<ActorInfo> {
   Actor actor;
   _ActorInfoState({this.actorId});
 
+  // method for load the actor with the id
   // ignore: missing_return
   Future<Actor> loadActor() async {
     try {
@@ -42,6 +43,7 @@ class _ActorInfoState extends State<ActorInfo> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: MyColors().black,
+        //call the method to load actor and show
         body: FutureBuilder(
             future: loadActor(),
             builder: (BuildContext context, AsyncSnapshot<Actor> snapshot) {

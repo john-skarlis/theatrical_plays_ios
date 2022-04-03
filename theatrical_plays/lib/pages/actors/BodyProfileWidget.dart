@@ -22,6 +22,7 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
   List<Movie> movies = [];
   _BodyProfileWidgetState(this.actorId);
 
+  // method for load the relative productions by actorId
   // ignore: missing_return
   Future<List<Production>> loadProductions() async {
     try {
@@ -62,6 +63,7 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
+        // call method for load the relative production with the actor id and show at the body of page
         future: loadProductions(),
         builder:
             (BuildContext context, AsyncSnapshot<List<Production>> snapshot) {

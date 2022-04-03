@@ -40,6 +40,7 @@ class _LoadingActorsState extends State<LoadingActors> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
+            // call and show the actors
             future: loadActors(),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
