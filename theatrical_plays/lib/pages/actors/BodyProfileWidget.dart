@@ -86,7 +86,7 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      MovieInfo(movies[index])));
+                                      MovieInfo(movies[index].id)));
                         },
                         title: Text(
                           productions[index].title +

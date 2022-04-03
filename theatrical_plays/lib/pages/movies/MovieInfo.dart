@@ -4,15 +4,15 @@ import 'package:theatrical_plays/using/MyColors.dart';
 
 // ignore: must_be_immutable
 class MovieInfo extends StatefulWidget {
-  Movie movie;
-  MovieInfo(this.movie);
+  int movieId;
+  MovieInfo(this.movieId);
   @override
-  State<MovieInfo> createState() => _MovieInfoState(movie: movie);
+  State<MovieInfo> createState() => _MovieInfoState(movieId: movieId);
 }
 
 class _MovieInfoState extends State<MovieInfo> {
-  Movie movie;
-  _MovieInfoState({this.movie});
+  int movieId;
+  _MovieInfoState({this.movieId});
   @override
   Widget build(BuildContext context) {
     return Container(
