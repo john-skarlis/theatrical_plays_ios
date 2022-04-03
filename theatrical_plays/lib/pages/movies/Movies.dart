@@ -45,7 +45,7 @@ class _MoviesState extends State<Movies> {
                   style: TextStyle(color: MyColors().cyan),
                 ),
                 subtitle: Text("Duration: " + movies[index].duration,
-                    style: TextStyle(color: MyColors().cyan)),
+                    style: TextStyle(color: MyColors().white)),
               );
             }),
       ),

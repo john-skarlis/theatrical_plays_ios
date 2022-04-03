@@ -45,7 +45,7 @@ class _TheatersState extends State<Theaters> {
                   ),
                   subtitle: Text(
                     theaters[index].address,
-                    style: TextStyle(color: MyColors().cyan),
+                    style: TextStyle(color: MyColors().white),
                   ));
             }),
       ),

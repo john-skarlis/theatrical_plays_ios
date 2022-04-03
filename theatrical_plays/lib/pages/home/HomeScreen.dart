@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     subtitle: Text(
                       latestMovies[index].producer,
-                      style: TextStyle(color: MyColors().cyan),
+                      style: TextStyle(color: MyColors().white),
                     ),
                   )
                 ],
