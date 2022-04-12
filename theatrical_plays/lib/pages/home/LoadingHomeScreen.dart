@@ -18,7 +18,7 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
   Future<List<Movie>> loadLatestMovies() async {
     try {
       Uri uri = Uri.parse(
-          "http://83.212.111.242:8080/api/productions/search?q=mediaURL~youtube");
+          "http://localhost:8080/api/productions/search?q=mediaURL~youtube");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 

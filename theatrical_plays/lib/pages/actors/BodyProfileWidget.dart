@@ -26,8 +26,8 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
   // ignore: missing_return
   Future<List<Production>> loadProductions() async {
     try {
-      Uri uri = Uri.parse(
-          "http://83.212.111.242:8080/api/people/$actorId/productions");
+      Uri uri =
+          Uri.parse("http://localhost:8080/api/people/$actorId/productions");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 

@@ -18,7 +18,7 @@ class _LoadingTheatersState extends State<LoadingTheaters> {
   //fetch data from the api
   // ignore: missing_return
   Future<List<Theater>> loadTheaters() async {
-    Uri uri = Uri.parse("http://83.212.111.242:8080/api/venues");
+    Uri uri = Uri.parse("http://localhost:8080/api/venues");
     Response data = await get(uri, headers: {"Accept": "application/json"});
     var jsonData = jsonDecode(data.body);
 

@@ -25,7 +25,7 @@ class _ActorInfoState extends State<ActorInfo> {
   // ignore: missing_return
   Future<Actor> loadActor() async {
     try {
-      Uri uri = Uri.parse("http://83.212.111.242:8080/api/people/$actorId");
+      Uri uri = Uri.parse("http://localhost:8080/api/people/$actorId");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
       if (jsonData['data']['image'] == '') {
