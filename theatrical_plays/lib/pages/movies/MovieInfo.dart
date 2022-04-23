@@ -8,11 +8,10 @@ import 'package:theatrical_plays/using/Loading.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
 import 'MoviePeopleSection.dart';
-import 'MovieVenuesSection.dart';
 
 // ignore: must_be_immutable
 class MovieInfo extends StatefulWidget {
-  int movieId;
+  final int movieId;
   MovieInfo(this.movieId);
   @override
   State<MovieInfo> createState() => _MovieInfoState(movieId: movieId);
@@ -30,12 +29,15 @@ class _MovieInfoState extends State<MovieInfo> {
       Uri uri = Uri.parse("http://localhost:8080/api/productions/$movieId");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
+      if (jsonData['data']['mediaURL'] == "") {
+        jsonData['data']['mediaURL'] = "Not found";
+      }
       return movie = new Movie(
           jsonData['data']['id'],
           jsonData['data']['title'],
-          jsonData['data']['ticketUrl'],
+          jsonData['data']['url'],
           jsonData['data']['producer'],
-          jsonData['data']['mediaUrl'],
+          jsonData['data']['mediaURL'],
           jsonData['data']['duration'],
           jsonData['data']['description']);
     } on Exception {
@@ -46,6 +48,15 @@ class _MovieInfoState extends State<MovieInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          // ignore: deprecated_member_use
+          brightness: Brightness.dark,
+          title: Text(
+            'Movie Info',
+            style: TextStyle(color: MyColors().cyan),
+          ),
+          backgroundColor: MyColors().black,
+        ),
         backgroundColor: MyColors().black,
         //call the method to load actor and show
         body: FutureBuilder(
@@ -60,16 +71,7 @@ class _MovieInfoState extends State<MovieInfo> {
                 return ListView(
                   physics: BouncingScrollPhysics(),
                   children: [
-                    MovieProfile(),
-                    Divider(color: MyColors().gray),
-                    Center(
-                        child: Padding(
-                      padding: EdgeInsets.fromLTRB(0, 5, 0, 15),
-                      child: Text('Relateded Venues',
-                          style:
-                              TextStyle(color: MyColors().cyan, fontSize: 22)),
-                    )),
-                    MovieVenuesSection(),
+                    MovieProfile(movie: movie),
                     Divider(color: MyColors().gray),
                     Center(
                         child: Padding(
@@ -78,7 +80,7 @@ class _MovieInfoState extends State<MovieInfo> {
                           style:
                               TextStyle(color: MyColors().cyan, fontSize: 22)),
                     )),
-                    MoviePeopleSection()
+                    MoviePeopleSection(movie.id)
                   ],
                 );
               }

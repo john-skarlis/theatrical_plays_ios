@@ -28,7 +28,7 @@ class _ActorInfoState extends State<ActorInfo> {
       Uri uri = Uri.parse("http://localhost:8080/api/people/$actorId");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
-      if (jsonData['data']['image'] == '') {
+      if (jsonData['data']['image'] == null) {
         jsonData['data']['image'] =
             'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
       }
@@ -42,6 +42,15 @@ class _ActorInfoState extends State<ActorInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          // ignore: deprecated_member_use
+          brightness: Brightness.dark,
+          title: Text(
+            'Actor Info',
+            style: TextStyle(color: MyColors().cyan),
+          ),
+          backgroundColor: MyColors().black,
+        ),
         backgroundColor: MyColors().black,
         //call the method to load actor and show
         body: FutureBuilder(
@@ -57,6 +66,25 @@ class _ActorInfoState extends State<ActorInfo> {
                   children: [
                     ProfileWidget(
                         imagePath: actor.image, actorName: actor.fullName),
+                    Center(
+                        child: Padding(
+                      padding: EdgeInsets.fromLTRB(0, 5, 0, 15),
+                      child: Text('Bio',
+                          style:
+                              TextStyle(color: MyColors().cyan, fontSize: 22)),
+                    )),
+                    Container(
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
+                        child: Text(
+                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam," +
+                              " quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                          style:
+                              TextStyle(color: MyColors().cyan, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    Divider(color: MyColors().gray),
                     Center(
                         child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 5, 0, 15),

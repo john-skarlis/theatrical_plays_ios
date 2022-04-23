@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Theater.dart';
-import 'package:theatrical_plays/pages/theaters/LoadingTheaters.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
+
+import 'TheaterInfo.dart';
 
 // ignore: must_be_immutable
 class Theaters extends StatefulWidget {
@@ -28,7 +29,8 @@ class _TheatersState extends State<Theaters> {
                         context,
                         //open the tapped item
                         MaterialPageRoute(
-                            builder: (context) => LoadingTheaters()));
+                            builder: (context) =>
+                                TheaterInfo(theaters[index].id)));
                   },
                   leading: Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
