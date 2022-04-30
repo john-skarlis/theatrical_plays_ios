@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 import 'package:theatrical_plays/models/Theater.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
@@ -25,6 +26,14 @@ class TheaterProfile extends StatelessWidget {
           "Address: " + theater.address,
           style: TextStyle(color: MyColors().cyan, fontSize: 18),
         ),
+      ),
+      FloatingActionButton.extended(
+        label: Text('See on map',
+            style: TextStyle(color: MyColors().cyan, fontSize: 18)), // <-- Text
+        backgroundColor: MyColors().gray,
+        onPressed: () {
+          _launchMap(theater.address);
+        },
       )
     ]);
   }
@@ -44,5 +53,9 @@ class TheaterProfile extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _launchMap(String address) {
+    MapsLauncher.launchQuery(address);
   }
 }
