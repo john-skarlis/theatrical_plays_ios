@@ -3,10 +3,17 @@ import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MovieProfile extends StatelessWidget {
-  final Movie movie;
-  const MovieProfile({key, this.movie}) : super(key: key);
+// ignore: must_be_immutable
+class MovieProfile extends StatefulWidget {
+  Movie movie;
+  MovieProfile(this.movie);
+  @override
+  _MovieProfile createState() => _MovieProfile(movie: movie);
+}
 
+class _MovieProfile extends State<MovieProfile> {
+  Movie movie;
+  _MovieProfile({this.movie});
   @override
   Widget build(BuildContext context) {
     return Column(children: [
@@ -31,19 +38,18 @@ class MovieProfile extends StatelessWidget {
       Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
         child: Text(
-          "Duration: " +
-              movie.duration +
-              " min \nProducer: " +
-              movie.producer +
-              "\nTrailer: ",
+          "Duration: " + movie.duration + " min \nProducer: " + movie.producer,
           style: TextStyle(color: MyColors().cyan, fontSize: 18),
         ),
       ),
-      // RaisedButton(
-      //   onPressed: _launchURL(movie.mediaUrl),
-      //   child: new Text(movie.mediaUrl,
-      //       style: TextStyle(color: MyColors().cyan, fontSize: 18)),
-      // )
+      FloatingActionButton.extended(
+        label: Text('Trailer',
+            style: TextStyle(color: MyColors().cyan, fontSize: 18)), // <-- Text
+        backgroundColor: MyColors().gray,
+        onPressed: () {
+          _launchURL(movie.mediaUrl);
+        },
+      ),
     ]);
   }
 
@@ -64,11 +70,11 @@ class MovieProfile extends StatelessWidget {
     );
   }
 
-  // _launchURL(String url) {
-  //   if (canLaunch(url) != null) {
-  //     launch(url);
-  //   } else {
-  //     throw 'Could not launch $url';
-  //   }
-  // }
+  _launchURL(String url) {
+    if (canLaunch(url) != null) {
+      launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }

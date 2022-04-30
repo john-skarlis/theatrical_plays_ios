@@ -61,6 +61,7 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
           } else {
             return Center(
                 child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: relatedMovies.length,
                     itemBuilder: (context, index) {

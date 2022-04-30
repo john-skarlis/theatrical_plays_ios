@@ -77,6 +77,7 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
           } else {
             return Center(
                 child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: productions.length,
                     itemBuilder: (context, index) {

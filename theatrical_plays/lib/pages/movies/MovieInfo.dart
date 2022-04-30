@@ -71,7 +71,7 @@ class _MovieInfoState extends State<MovieInfo> {
                 return ListView(
                   physics: BouncingScrollPhysics(),
                   children: [
-                    MovieProfile(movie: movie),
+                    MovieProfile(movie),
                     Divider(color: MyColors().gray),
                     Center(
                         child: Padding(
@@ -80,7 +80,7 @@ class _MovieInfoState extends State<MovieInfo> {
                           style:
                               TextStyle(color: MyColors().cyan, fontSize: 22)),
                     )),
-                    MoviePeopleSection(movie.id)
+                    MoviePeopleSection(movie.id),
                   ],
                 );
               }

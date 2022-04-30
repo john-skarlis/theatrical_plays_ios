@@ -62,6 +62,7 @@ class _MoviePeopleSectionState extends State<MoviePeopleSection> {
           } else {
             return Center(
                 child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: relatedActors.length,
                     itemBuilder: (context, index) {
