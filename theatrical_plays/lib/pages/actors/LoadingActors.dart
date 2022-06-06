@@ -15,24 +15,34 @@ class _LoadingActorsState extends State<LoadingActors> {
   List<Actor> actors = [];
   //load actos data from api
   // ignore: missing_return
-  Future<List<Actor>> loadActors() async {
+  Future<List<Actor>> loadActors(String query) async {
     try {
       Uri uri = Uri.parse("http://localhost:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
-      var jsonData = jsonDecode(data.body);
+      if (data.statusCode == 200) {
+        var jsonData = jsonDecode(data.body);
 
-      for (var oldActor in jsonData['data']['content']) {
-        if (oldActor['image'] == null) {
-          oldActor['image'] =
-              'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
+        for (var oldActor in jsonData['data']['content']) {
+          if (oldActor['image'] == null) {
+            oldActor['image'] =
+                'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
+          }
+          Actor actor = new Actor(
+              oldActor['image'], oldActor['id'], oldActor['fullName']);
+          actors.add(actor);
         }
-        Actor actor =
-            new Actor(oldActor['image'], oldActor['id'], oldActor['fullName']);
-        actors.add(actor);
+
+        return actors.where((actor) {
+          final actorNameToLowerCase = actor.fullName.toLowerCase();
+          final queryToLowerCase = query.toLowerCase();
+
+          return actorNameToLowerCase.contains(queryToLowerCase);
+        }).toList();
+      } else {
+        print("Api status code error");
       }
-      return actors;
-    } on Exception {
-      print('error data');
+    } on Exception catch (e) {
+      print('error data: $e');
     }
   }
 
@@ -41,7 +51,7 @@ class _LoadingActorsState extends State<LoadingActors> {
     return Scaffold(
         body: FutureBuilder(
             // call and show the actors
-            future: loadActors(),
+            future: loadActors(''),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
               if (!snapshot.hasData) {

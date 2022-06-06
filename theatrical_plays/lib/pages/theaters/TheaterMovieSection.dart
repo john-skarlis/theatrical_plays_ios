@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Movie.dart';
-import 'package:theatrical_plays/pages/actors/ActorInfo.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SmallLoading.dart';
@@ -21,6 +20,7 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
   List<Movie> relatedMovies = [];
   _TheaterMovieSectionState(this.theaterId);
 
+  // ignore: missing_return
   Future<List<Movie>> loadRelatedMovies() async {
     try {
       Uri uri =

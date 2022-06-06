@@ -15,22 +15,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   //sbake bottom nav bar options initiallization
   SnakeShape snakeShape = SnakeShape.indicator;
-  int _selectedItemPosition = 2;
+  int _selectedItemPosition = 0;
   //bottom nav bar screens
   final List<Widget> screens = [
-    LoadingTheaters(),
-    LoadingMovies(),
     LoadingHomeScreen(),
-    LoadingActors()
+    LoadingActors(),
+    LoadingMovies(),
+    LoadingTheaters()
   ];
-  //initiallize first screen
-  Widget currentScreen = LoadingHomeScreen();
   //https://www.youtube.com/watch?v=8YsO1FOLy5s
 
-  //initialize page storage object to keep the selected page
-  //final PageStorageBucket bucket = PageStorageBucket();
-
-  final PageController controller = PageController(initialPage: 2);
+  final PageController controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -64,45 +59,30 @@ class _HomeState extends State<Home> {
           setState(() {
             _selectedItemPosition = index;
             controller.jumpToPage(index);
-            /*if (index == 0) {
-              currentScreen = screens[0];
-            } else if (index == 1) {
-              currentScreen = screens[1];
-            } else if (index == 2) {
-              currentScreen = screens[2];
-            } else if (index == 3) {
-              currentScreen = screens[3];
-            }*/
           });
         },
         items: [
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.theaters_outlined), label: 'Theaters'),
-          const BottomNavigationBarItem(
-              icon: Icon(Icons.movie_outlined), label: 'Movies'),
           const BottomNavigationBarItem(
               icon: Icon(Icons.home_outlined), label: 'Home'),
           const BottomNavigationBarItem(
               icon: Icon(Icons.person_outline), label: 'Actors'),
           const BottomNavigationBarItem(
-              icon: Icon(Icons.search), label: 'Search')
+              icon: Icon(Icons.movie_outlined), label: 'Movies'),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.theaters_outlined), label: 'Theaters')
         ],
         selectedLabelStyle: const TextStyle(fontSize: 14),
         unselectedLabelStyle: const TextStyle(fontSize: 10),
       ),
       body: PageView(
-        controller: controller,
-        children: screens,
-        scrollDirection: Axis.horizontal,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedItemPosition = index;
-          });
-        },
-        /*PageStorage(
-        child: currentScreen,
-        bucket: bucket,)*/
-      ),
+          controller: controller,
+          children: screens,
+          scrollDirection: Axis.horizontal,
+          onPageChanged: (index) {
+            setState(() {
+              _selectedItemPosition = index;
+            });
+          }),
     );
   }
 }
