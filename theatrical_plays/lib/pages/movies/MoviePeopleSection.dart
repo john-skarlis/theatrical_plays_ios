@@ -20,6 +20,7 @@ class _MoviePeopleSectionState extends State<MoviePeopleSection> {
 
   List<RelatedActor> relatedActors = [];
 
+  // ignore: missing_return
   Future<List<RelatedActor>> loadRelatedActors() async {
     try {
       Uri uri =

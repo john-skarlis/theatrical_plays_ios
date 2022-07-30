@@ -71,7 +71,9 @@ class _MovieProfile extends State<MovieProfile> {
   }
 
   _launchURL(String url) {
+    // ignore: deprecated_member_use
     if (canLaunch(url) != null) {
+      // ignore: deprecated_member_use
       launch(url);
     } else {
       throw 'Could not launch $url';

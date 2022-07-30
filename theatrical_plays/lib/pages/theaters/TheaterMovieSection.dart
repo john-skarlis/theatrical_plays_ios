@@ -83,6 +83,5 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
                     }));
           }
         });
-    ;
   }
 }

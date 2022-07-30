@@ -20,6 +20,7 @@ class _TheaterInfoState extends State<TheaterInfo> {
   int theaterId;
   Theater theater;
 
+  // ignore: missing_return
   Future<Theater> loadTheater() async {
     try {
       Uri uri = Uri.parse("http://localhost:8080/api/venues/$theaterId");

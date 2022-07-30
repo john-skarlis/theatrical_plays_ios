@@ -3,8 +3,6 @@ import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
-import 'LoadingMovies.dart';
-
 // ignore: must_be_immutable
 class Movies extends StatefulWidget {
   List<Movie> movies = [];
