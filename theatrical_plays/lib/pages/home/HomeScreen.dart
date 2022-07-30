@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Actor.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/models/Theater.dart';
+import 'package:theatrical_plays/pages/Home.dart';
 import 'package:theatrical_plays/pages/actors/ActorInfo.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/pages/theaters/TheaterInfo.dart';
@@ -52,10 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
               width: 10,
               child: FloatingActionButton.extended(
-                label: Text('Actors',
+                label: Text('See more actors',
                     style: TextStyle(color: MyColors().cyan)), // <-- Text
                 backgroundColor: MyColors().gray,
-                onPressed: () {},
+                onPressed: () {
+                  Home.of(context).setBottomNav('Actors');
+                },
               ),
             ),
             Divider(color: MyColors().gray),
@@ -74,10 +77,12 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
               width: 10,
               child: FloatingActionButton.extended(
-                label: Text('Movies',
+                label: Text('See more movies',
                     style: TextStyle(color: MyColors().cyan)), // <-- Text
                 backgroundColor: MyColors().gray,
-                onPressed: () {},
+                onPressed: () {
+                  Home.of(context).setBottomNav('Movies');
+                },
               ),
             ),
             Divider(color: MyColors().gray),
@@ -96,10 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
               width: 10,
               child: FloatingActionButton.extended(
-                label: Text('Theaters',
+                label: Text('See more theaters',
                     style: TextStyle(color: MyColors().cyan)), // <-- Text
                 backgroundColor: MyColors().gray,
-                onPressed: () {},
+                onPressed: () {
+                  Home.of(context).setBottomNav('Theaters');
+                },
               ),
             ),
             Divider(color: MyColors().gray)

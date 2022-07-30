@@ -8,6 +8,9 @@ import 'actors/LoadingActors.dart';
 import 'movies/LoadingMovies.dart';
 
 class Home extends StatefulWidget {
+  static _HomeState of(BuildContext context) =>
+      context.findAncestorStateOfType<_HomeState>();
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -84,5 +87,20 @@ class _HomeState extends State<Home> {
             });
           }),
     );
+  }
+
+  void setBottomNav(page) {
+    int index;
+    if (page == 'Actors') {
+      index = 1;
+    } else if (page == 'Movies') {
+      index = 2;
+    } else if (page == 'Theaters') {
+      index = 3;
+    }
+    setState(() {
+      _selectedItemPosition = index;
+      controller.jumpToPage(index);
+    });
   }
 }
