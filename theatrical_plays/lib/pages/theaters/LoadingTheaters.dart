@@ -24,8 +24,8 @@ class _LoadingTheatersState extends State<LoadingTheaters> {
 
     try {
       for (var oldTheater in jsonData['data']['content']) {
-        Theater theater = new Theater(
-            oldTheater['id'], oldTheater['title'], oldTheater['address']);
+        Theater theater = new Theater(oldTheater['id'], oldTheater['title'],
+            oldTheater['address'], false);
 
         theaters.add(theater);
       }

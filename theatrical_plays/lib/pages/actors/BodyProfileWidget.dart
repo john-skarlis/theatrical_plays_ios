@@ -49,7 +49,8 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
             oldProduction['producer'],
             oldProduction['mediaUrl'],
             oldProduction['duration'],
-            oldProduction['description']);
+            oldProduction['description'],
+            false);
 
         productions.add(production);
         movies.add(movie);

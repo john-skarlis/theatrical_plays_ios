@@ -39,7 +39,8 @@ class _MovieInfoState extends State<MovieInfo> {
           jsonData['data']['producer'],
           jsonData['data']['mediaURL'],
           jsonData['data']['duration'],
-          jsonData['data']['description']);
+          jsonData['data']['description'],
+          false);
     } on Exception {
       print('error data');
     }

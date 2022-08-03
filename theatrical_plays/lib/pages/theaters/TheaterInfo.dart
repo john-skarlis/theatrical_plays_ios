@@ -28,7 +28,7 @@ class _TheaterInfoState extends State<TheaterInfo> {
       var jsonData = jsonDecode(data.body);
 
       return theater = new Theater(jsonData['data']['id'],
-          jsonData['data']['title'], jsonData['data']['address']);
+          jsonData['data']['title'], jsonData['data']['address'], false);
     } on Exception {
       print('error data');
     }

@@ -36,7 +36,8 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
             oldRelatedMovie['producer'],
             oldRelatedMovie['mediaURL'],
             oldRelatedMovie['duration'],
-            oldRelatedMovie['description']);
+            oldRelatedMovie['description'],
+            false);
         relatedMovies.add(relatedMovie);
       }
       return relatedMovies;

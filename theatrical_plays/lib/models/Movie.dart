@@ -6,7 +6,8 @@ class Movie {
   String mediaUrl;
   String duration;
   String description;
+  bool isSelected;
 
   Movie(this.id, this.title, this.ticketUrl, this.producer, this.mediaUrl,
-      this.duration, this.description);
+      this.duration, this.description, this.isSelected);
 }

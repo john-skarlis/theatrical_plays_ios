@@ -30,7 +30,8 @@ class _LoadingMoviesState extends State<LoadingMovies> {
             oldMovie['producer'],
             oldMovie['mediaUrl'],
             oldMovie['duration'],
-            oldMovie['description']);
+            oldMovie['description'],
+            false);
 
         movies.add(movie);
       }

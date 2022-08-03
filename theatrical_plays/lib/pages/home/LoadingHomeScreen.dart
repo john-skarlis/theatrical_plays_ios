@@ -36,7 +36,8 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
               oldMovie['producer'],
               oldMovie['mediaUrl'],
               oldMovie['duration'],
-              oldMovie['description']);
+              oldMovie['description'],
+              false);
           if (counter < 6) {
             movies.add(movie);
             counter++;
@@ -93,8 +94,8 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
         if (oldTheater['title'] != null &&
             oldTheater['address'] != null &&
             counter < 6) {
-          Theater theater = new Theater(
-              oldTheater['id'], oldTheater['title'], oldTheater['address']);
+          Theater theater = new Theater(oldTheater['id'], oldTheater['title'],
+              oldTheater['address'], false);
 
           theaters.add(theater);
           counter++;
