@@ -3,6 +3,8 @@ import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
+import 'CompareMovies.dart';
+
 // ignore: must_be_immutable
 class Movies extends StatefulWidget {
   List<Movie> movies = [];
@@ -63,7 +65,7 @@ class _MoviesState extends State<Movies> {
                       onLongPress: () {
                         setState(() {
                           movies[index].isSelected = !movies[index].isSelected;
-                          print("Clicked");
+                          print("Selected");
                           if (movies[index].isSelected == true) {
                             selectedMovies.add(movies[index]);
                           } else if (movies[index].isSelected == false) {
@@ -81,15 +83,21 @@ class _MoviesState extends State<Movies> {
                         horizontal: 25, vertical: 10),
                     child: SizedBox(
                         width: double.infinity,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           color: MyColors().gray,
                           child: Text(
-                            "Compare (${selectedMovies.length})",
+                            "Compare ticket prices (${selectedMovies.length})",
                             style:
                                 TextStyle(color: MyColors().cyan, fontSize: 18),
                           ),
                           onPressed: () {
-                            print("Compare Click");
+                            // print("Click");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        CompareMovies(selectedMovies)));
                           },
                         )))
                 : Container()

@@ -1,9 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Theater.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
+import 'CompareTheaters.dart';
 import 'TheaterInfo.dart';
 
 // ignore: must_be_immutable
@@ -88,6 +87,7 @@ class _TheatersState extends State<Theaters> {
                         horizontal: 25, vertical: 10),
                     child: SizedBox(
                         width: double.infinity,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           color: MyColors().gray,
                           child: Text(
@@ -96,7 +96,12 @@ class _TheatersState extends State<Theaters> {
                                 TextStyle(color: MyColors().cyan, fontSize: 18),
                           ),
                           onPressed: () {
-                            print("Compare Click");
+                            // print("Compare Click");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        CompareTheaters(selectedTheaters)));
                           },
                         )))
                 : Container()
