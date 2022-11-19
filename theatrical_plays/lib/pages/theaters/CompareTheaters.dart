@@ -25,6 +25,7 @@ class _CompareTheatersState extends State<CompareTheaters> {
   List<ChartTheater> chartTheaters = [];
   ChartTheater chartTheater;
 
+  // ignore: missing_return
   Future<List<ChartTheater>> loadChartTheaters() async {
     var theaterId;
     try {

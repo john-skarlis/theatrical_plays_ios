@@ -55,7 +55,7 @@ class _MoviesState extends State<Movies> {
                         movies[index].title,
                         style: TextStyle(color: MyColors().cyan),
                       ),
-                      subtitle: Text("Duration: " + movies[index].duration,
+                      subtitle: Text("Duration: ${movies[index].duration}",
                           style: TextStyle(color: MyColors().white)),
                       trailing: movies[index].isSelected
                           ? Icon(
@@ -85,31 +85,62 @@ class _MoviesState extends State<Movies> {
                 ? Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 25, vertical: 10),
-                    child: SizedBox(
-                        width: double.infinity,
-                        // ignore: deprecated_member_use
-                        child: RaisedButton(
-                          color: MyColors().gray,
-                          child: Text(
-                            "Compare ticket prices (${selectedMovies.length})",
-                            style:
-                                TextStyle(color: MyColors().cyan, fontSize: 18),
-                          ),
-                          onPressed: () {
-                            // print("Click");
-                            selectedMovies.length < 5
-                                ? Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            CompareMovies(selectedMovies)))
-                                : ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                    content: Text(
-                                        "You can't compare more than 4 movies"),
-                                  ));
-                          },
-                        )))
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            width: double.infinity,
+                            // ignore: deprecated_member_use
+                            child: RaisedButton(
+                              color: MyColors().gray,
+                              child: Text(
+                                "Compare ticket prices (${selectedMovies.length})",
+                                style: TextStyle(
+                                    color: MyColors().cyan, fontSize: 18),
+                              ),
+                              onPressed: () {
+                                // print("Click");
+                                selectedMovies.length < 5
+                                    ? Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CompareMovies(selectedMovies)))
+                                    : ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "You can't compare more than 4 movies"),
+                                      ));
+                              },
+                            )),
+                        SizedBox(
+                            width: double.infinity,
+                            // ignore: deprecated_member_use
+                            child: RaisedButton(
+                              color: MyColors().gray,
+                              child: Text(
+                                "Clear",
+                                style: TextStyle(
+                                    color: MyColors().cyan, fontSize: 18),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  List<Movie> removeList = [];
+                                  selectedMovies.forEach((item) {
+                                    removeList.add(item);
+                                  });
+                                  removeList.forEach((removeItem) {
+                                    for (var movie in movies) {
+                                      if (movie.id == removeItem.id) {
+                                        movie.isSelected = !movie.isSelected;
+                                      }
+                                    }
+                                  });
+                                  selectedMovies.clear();
+                                });
+                              },
+                            ))
+                      ],
+                    ))
                 : Container()
           ],
         )));

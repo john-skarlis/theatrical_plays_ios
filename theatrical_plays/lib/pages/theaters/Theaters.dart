@@ -85,25 +85,57 @@ class _TheatersState extends State<Theaters> {
                 ? Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 25, vertical: 10),
-                    child: SizedBox(
-                        width: double.infinity,
-                        // ignore: deprecated_member_use
-                        child: RaisedButton(
-                          color: MyColors().gray,
-                          child: Text(
-                            "Compare (${selectedTheaters.length})",
-                            style:
-                                TextStyle(color: MyColors().cyan, fontSize: 18),
-                          ),
-                          onPressed: () {
-                            // print("Compare Click");
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        CompareTheaters(selectedTheaters)));
-                          },
-                        )))
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            width: double.infinity,
+                            // ignore: deprecated_member_use
+                            child: RaisedButton(
+                              color: MyColors().gray,
+                              child: Text(
+                                "Compare (${selectedTheaters.length})",
+                                style: TextStyle(
+                                    color: MyColors().cyan, fontSize: 18),
+                              ),
+                              onPressed: () {
+                                // print("Compare Click");
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            CompareTheaters(selectedTheaters)));
+                              },
+                            )),
+                        SizedBox(
+                            width: double.infinity,
+                            // ignore: deprecated_member_use
+                            child: RaisedButton(
+                              color: MyColors().gray,
+                              child: Text(
+                                "Clear",
+                                style: TextStyle(
+                                    color: MyColors().cyan, fontSize: 18),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  List<Theater> removeList = [];
+                                  selectedTheaters.forEach((item) {
+                                    removeList.add(item);
+                                  });
+                                  removeList.forEach((removeItem) {
+                                    for (var theater in theaters) {
+                                      if (theater.id == removeItem.id) {
+                                        theater.isSelected =
+                                            !theater.isSelected;
+                                      }
+                                    }
+                                  });
+                                  selectedTheaters.clear();
+                                });
+                              },
+                            ))
+                      ],
+                    ))
                 : Container()
           ],
         ),

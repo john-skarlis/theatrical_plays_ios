@@ -23,7 +23,6 @@ class CompareMovies extends StatefulWidget {
 class _CompareMoviesState extends State<CompareMovies> {
   List<Movie> selectedMovies = [];
   _CompareMoviesState({this.selectedMovies});
-  bool emptyObjectFlag = false;
 
   List<CompMovie> compareMovies = [];
   CompMovie compareMovie;
@@ -43,7 +42,9 @@ class _CompareMoviesState extends State<CompareMovies> {
 
         if (jsonData['data'].toString() == '[]') {
           print("Null data");
-          emptyObjectFlag = true;
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(item.title + " has null price."),
+          ));
           break;
         } else {
           compareMovie = new CompMovie(
