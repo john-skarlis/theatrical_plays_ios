@@ -16,8 +16,8 @@ class _LoadingMoviesState extends State<LoadingMovies> {
 
 //fetch data from api
   // ignore: missing_return
-  Future<List<Movie>> loadMovies() async {
-    Uri uri = Uri.parse("http://localhost:8080/api/productions");
+  Future<List<Movie>> loadMovies(String query) async {
+    Uri uri = Uri.parse("http://195.251.123.174:8080/api/productions");
     Response data = await get(uri, headers: {"Accept": "application/json"});
     var jsonData = jsonDecode(data.body);
 
@@ -35,7 +35,12 @@ class _LoadingMoviesState extends State<LoadingMovies> {
 
         movies.add(movie);
       }
-      return movies;
+      return movies.where((movie) {
+        final movietitleToLowerCase = movie.title.toLowerCase();
+        final queryToLowerCase = query.toLowerCase();
+
+        return movietitleToLowerCase.contains(queryToLowerCase);
+      }).toList();
     } on Exception {
       print('error data');
     }
@@ -45,7 +50,7 @@ class _LoadingMoviesState extends State<LoadingMovies> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-            future: loadMovies(),
+            future: loadMovies(''),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
               if (!snapshot.hasData) {

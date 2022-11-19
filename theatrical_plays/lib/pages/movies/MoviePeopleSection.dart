@@ -23,12 +23,17 @@ class _MoviePeopleSectionState extends State<MoviePeopleSection> {
   // ignore: missing_return
   Future<List<RelatedActor>> loadRelatedActors() async {
     try {
-      Uri uri =
-          Uri.parse("http://localhost:8080/api/productions/$movieId/people");
+      Uri uri = Uri.parse(
+          "http://195.251.123.174:8080/api/productions/$movieId/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 
       for (var oldRelatedActor in jsonData['data']) {
+        if (oldRelatedActor['image'] == null ||
+            oldRelatedActor['image'] == '') {
+          oldRelatedActor['image'] =
+              'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
+        }
         RelatedActor relatedActor = new RelatedActor(
             oldRelatedActor['role'],
             oldRelatedActor['image'],
@@ -75,6 +80,15 @@ class _MoviePeopleSectionState extends State<MoviePeopleSection> {
                                   builder: (context) =>
                                       ActorInfo(relatedActors[index].id)));
                         },
+                        leading: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+                          child: CircleAvatar(
+                            radius: 30.0,
+                            backgroundImage:
+                                NetworkImage(relatedActors[index].image),
+                          ),
+                        ),
                         title: Text(
                           relatedActors[index].fullName +
                               " - " +

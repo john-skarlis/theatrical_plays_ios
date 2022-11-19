@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Movie.dart';
+import 'package:theatrical_plays/pages/movies/LoadingMovies.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
+import 'package:theatrical_plays/using/SearchWidget.dart';
 
 import 'CompareMovies.dart';
 
@@ -16,7 +19,7 @@ class Movies extends StatefulWidget {
 class _MoviesState extends State<Movies> {
   List<Movie> movies = [];
   _MoviesState({this.movies});
-
+  String query = '';
   List<Movie> selectedMovies = [];
 
   @override
@@ -26,6 +29,7 @@ class _MoviesState extends State<Movies> {
         body: Container(
             child: Column(
           children: [
+            buildSearch(),
             Expanded(
               child: ListView.builder(
                 itemCount: movies.length,
@@ -34,7 +38,7 @@ class _MoviesState extends State<Movies> {
                       onTap: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            CupertinoPageRoute(
                                 builder: (context) =>
                                     MovieInfo(movies[index].id)));
                       },
@@ -93,15 +97,54 @@ class _MoviesState extends State<Movies> {
                           ),
                           onPressed: () {
                             // print("Click");
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        CompareMovies(selectedMovies)));
+                            selectedMovies.length < 5
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            CompareMovies(selectedMovies)))
+                                : ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                    content: Text(
+                                        "You can't compare more than 4 movies"),
+                                  ));
                           },
                         )))
                 : Container()
           ],
         )));
+  }
+
+  Widget buildSearch() => SearchWidget(
+        text: query,
+        hintText: 'Movie name',
+        onChanged: searchMovies,
+      );
+
+  Future searchMovies(String query) async {
+    // final search = actors.where((actor) {
+    //   final searchActors = actor.fullName.toLowerCase();
+    //   final searchLower = query.toLowerCase();
+
+    //   return searchActors.contains(searchLower);
+    // }).toList();
+    // if (query.isEmpty) {
+    //   setState(() {
+    //     this.query = "";
+    //     this.actors = LoadingActors().createState().loadActors() as List<Actor>;
+    //   });
+    // } else {
+    //   setState(() {
+    //     this.query = query;
+    //     this.actors = search;
+    //   });
+    // }
+    final List<Movie> search =
+        await LoadingMovies().createState().loadMovies(query);
+    if (!mounted) return;
+    setState(() {
+      this.query = query;
+      this.movies = search;
+    });
   }
 }

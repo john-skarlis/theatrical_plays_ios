@@ -26,7 +26,8 @@ class _MovieInfoState extends State<MovieInfo> {
   // ignore: missing_return
   Future<Movie> loadMovie() async {
     try {
-      Uri uri = Uri.parse("http://localhost:8080/api/productions/$movieId");
+      Uri uri =
+          Uri.parse("http://195.251.123.174:8080/api/productions/$movieId");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
       if (jsonData['data']['mediaURL'] == "") {

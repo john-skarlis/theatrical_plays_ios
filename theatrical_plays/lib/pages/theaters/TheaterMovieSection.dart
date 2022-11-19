@@ -23,8 +23,8 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
   // ignore: missing_return
   Future<List<Movie>> loadRelatedMovies() async {
     try {
-      Uri uri =
-          Uri.parse("http://localhost:8080/api/venues/$theaterId/productions");
+      Uri uri = Uri.parse(
+          "http://195.251.123.174:8080/api/venues/$theaterId/productions");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 
@@ -74,6 +74,15 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
                                   builder: (context) =>
                                       MovieInfo(relatedMovies[index].id)));
                         },
+                        leading: Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+                          child: CircleAvatar(
+                            radius: 30.0,
+                            backgroundImage: NetworkImage(
+                                'https://thumbs.dreamstime.com/z/print-178440812.jpg'),
+                          ),
+                        ),
                         title: Text(
                           relatedMovies[index].title +
                               " - " +

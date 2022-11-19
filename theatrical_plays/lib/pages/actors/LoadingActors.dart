@@ -17,13 +17,13 @@ class _LoadingActorsState extends State<LoadingActors> {
   // ignore: missing_return
   Future<List<Actor>> loadActors(String query) async {
     try {
-      Uri uri = Uri.parse("http://localhost:8080/api/people");
+      Uri uri = Uri.parse("http://195.251.123.174:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       if (data.statusCode == 200) {
         var jsonData = jsonDecode(data.body);
 
         for (var oldActor in jsonData['data']['content']) {
-          if (oldActor['image'] == null) {
+          if (oldActor['image'] == null || oldActor['image'] == '') {
             oldActor['image'] =
                 'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
           }

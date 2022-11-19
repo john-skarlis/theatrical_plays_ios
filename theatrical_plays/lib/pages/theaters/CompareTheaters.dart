@@ -32,7 +32,7 @@ class _CompareTheatersState extends State<CompareTheaters> {
         theaterId = item.id;
         print(item.id);
         Uri uri = Uri.parse(
-            "http://localhost:8080/api/venues/$theaterId/productions");
+            "http://195.251.123.174:8080/api/venues/$theaterId/productions");
         Response data = await get(uri, headers: {"Accept": "application/json"});
         var jsonData = jsonDecode(data.body);
 

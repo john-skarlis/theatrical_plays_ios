@@ -53,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
               width: 10,
               child: FloatingActionButton.extended(
+                heroTag: "btn1",
                 label: Text('See more actors',
                     style: TextStyle(color: MyColors().cyan)), // <-- Text
                 backgroundColor: MyColors().gray,
@@ -77,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
               width: 10,
               child: FloatingActionButton.extended(
+                heroTag: "btn2",
                 label: Text('See more movies',
                     style: TextStyle(color: MyColors().cyan)), // <-- Text
                 backgroundColor: MyColors().gray,
@@ -101,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
               width: 10,
               child: FloatingActionButton.extended(
+                heroTag: "btn3",
                 label: Text('See more theaters',
                     style: TextStyle(color: MyColors().cyan)), // <-- Text
                 backgroundColor: MyColors().gray,

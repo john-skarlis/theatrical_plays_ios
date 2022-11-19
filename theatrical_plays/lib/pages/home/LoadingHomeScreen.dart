@@ -20,9 +20,10 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
   //load latest movies data from api
   // ignore: missing_return
   Future<List<Movie>> loadHomeMovies() async {
+    loadHomeActors();
+    loadHomeTheaters();
     try {
-      Uri uri = Uri.parse(
-          "http://localhost:8080/api/productions/search?q=mediaURL~youtube");
+      Uri uri = Uri.parse("http://195.251.123.174:8080/api/productions");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 
@@ -53,23 +54,23 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
 
   // ignore: missing_return
   Future<List<Actor>> loadHomeActors() async {
-    loadHomeMovies();
-    loadHomeTheaters();
+    // loadHomeMovies();
+    // loadHomeTheaters();
     try {
-      Uri uri = Uri.parse("http://localhost:8080/api/people");
+      Uri uri = Uri.parse("http://195.251.123.174:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       if (data.statusCode == 200) {
         var jsonData = jsonDecode(data.body);
 
         int counter = 0;
         for (var oldActor in jsonData['data']['content']) {
-          if (oldActor['image'] != null &&
-              counter < 6 &&
-              oldActor['id'] != 1908) {
-            Actor actor = new Actor(
-                oldActor['image'], oldActor['id'], oldActor['fullName']);
-            actors.add(actor);
-            counter++;
+          if (oldActor['image'] != '' && oldActor['image'] != null) {
+            if (counter < 6 && oldActor['id'] != 1908) {
+              Actor actor = new Actor(
+                  oldActor['image'], oldActor['id'], oldActor['fullName']);
+              actors.add(actor);
+              counter++;
+            }
           }
         }
         print("actors: " + actors[0].fullName);
@@ -84,7 +85,7 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
 
   // ignore: missing_return
   Future<List<Theater>> loadHomeTheaters() async {
-    Uri uri = Uri.parse("http://localhost:8080/api/venues");
+    Uri uri = Uri.parse("http://195.251.123.174:8080/api/venues");
     Response data = await get(uri, headers: {"Accept": "application/json"});
     var jsonData = jsonDecode(data.body);
 
@@ -112,9 +113,9 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-            future: loadHomeActors(),
+            future: loadHomeMovies(),
             builder:
-                (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
+                (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
               if (!snapshot.hasData) {
                 return Loading();
               } else if (snapshot.hasError) {

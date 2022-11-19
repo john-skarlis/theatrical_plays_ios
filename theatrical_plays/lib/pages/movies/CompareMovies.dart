@@ -23,6 +23,7 @@ class CompareMovies extends StatefulWidget {
 class _CompareMoviesState extends State<CompareMovies> {
   List<Movie> selectedMovies = [];
   _CompareMoviesState({this.selectedMovies});
+  bool emptyObjectFlag = false;
 
   List<CompMovie> compareMovies = [];
   CompMovie compareMovie;
@@ -35,13 +36,14 @@ class _CompareMoviesState extends State<CompareMovies> {
       for (var item in selectedMovies) {
         movieId = item.id;
         print(item.id);
-        Uri uri =
-            Uri.parse("http://localhost:8080/api/productions/$movieId/events");
+        Uri uri = Uri.parse(
+            "http://195.251.123.174:8080/api/productions/$movieId/events");
         Response data = await get(uri, headers: {"Accept": "application/json"});
         var jsonData = jsonDecode(data.body);
 
-        if (jsonData['data'][0] == null) {
+        if (jsonData['data'].toString() == '[]') {
           print("Null data");
+          emptyObjectFlag = true;
           break;
         } else {
           compareMovie = new CompMovie(
@@ -67,8 +69,13 @@ class _CompareMoviesState extends State<CompareMovies> {
               } else if (snapshot.hasError) {
                 return Text("error loading");
               } else {
-                castPrice(compareMovies);
-                return chartBuilder();
+                if (snapshot.data.isNotEmpty) {
+                  castPrice(compareMovies);
+                  return chartBuilder();
+                } else {
+                  Navigator.pop(context);
+                  return Container();
+                }
               }
             }));
   }
@@ -93,10 +100,16 @@ class _CompareMoviesState extends State<CompareMovies> {
             series: <ChartSeries>[
               ColumnSeries<ChartCompMovie, String>(
                   dataSource: chartMovies,
-                  xValueMapper: (ChartCompMovie movie, _) => movie.title,
+                  xValueMapper: (ChartCompMovie movie, _) =>
+                      movie.title.characters.take(9).toString(),
                   yValueMapper: (ChartCompMovie movie, _) => movie.priceRange)
             ],
-            tooltipBehavior: TooltipBehavior(enable: true, header: 'Movie'),
+            tooltipBehavior: TooltipBehavior(
+                enable: true, header: 'Movie', format: 'point.x: point.y€'
+                // builder: (data, point, series, pointIndex, seriesIndex) {
+                //   return Container(child: Text('PointIndex : ${point}'));
+                // },
+                ),
             primaryXAxis: CategoryAxis(),
             borderColor: MyColors().black,
             backgroundColor: MyColors().black),
@@ -123,9 +136,15 @@ class _CompareMoviesState extends State<CompareMovies> {
       if (clearPrice == null) {
         clearPrice = 0.0;
       }
+      var labelTitle = castMovieTitle(item.title);
       ChartCompMovie chartCompMovie =
-          new ChartCompMovie(item.id, item.title, clearPrice);
+          new ChartCompMovie(item.id, item.title, clearPrice, labelTitle);
       chartMovies.add(chartCompMovie);
     }
+  }
+
+  String castMovieTitle(String title) {
+    var labelTitle = title.characters.take(9).toString();
+    return labelTitle;
   }
 }

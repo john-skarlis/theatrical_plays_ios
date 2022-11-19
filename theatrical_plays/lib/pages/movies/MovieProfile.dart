@@ -38,7 +38,7 @@ class _MovieProfile extends State<MovieProfile> {
       Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
         child: Text(
-          "Duration: " + movie.duration + " min \nProducer: " + movie.producer,
+          "Duration: " + movie.duration + " h \nProducer: " + movie.producer,
           style: TextStyle(color: MyColors().cyan, fontSize: 18),
         ),
       ),
