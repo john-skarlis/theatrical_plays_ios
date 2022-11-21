@@ -102,7 +102,7 @@ class _CompareMoviesState extends State<CompareMovies> {
               ColumnSeries<ChartCompMovie, String>(
                   dataSource: chartMovies,
                   xValueMapper: (ChartCompMovie movie, _) =>
-                      movie.title.characters.take(9).toString(),
+                      movie.title.characters.take(10).toString(),
                   yValueMapper: (ChartCompMovie movie, _) => movie.priceRange)
             ],
             tooltipBehavior: TooltipBehavior(
