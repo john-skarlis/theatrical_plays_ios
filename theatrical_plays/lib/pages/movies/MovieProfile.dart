@@ -37,10 +37,18 @@ class _MovieProfile extends State<MovieProfile> {
       Divider(color: MyColors().gray),
       Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
-        child: Text(
-          "Duration: " + movie.duration + " h \nProducer: " + movie.producer,
-          style: TextStyle(color: MyColors().cyan, fontSize: 18),
-        ),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          movie.duration.isNotEmpty
+              ? Text(
+                  "Duration: " + movie.duration + " h",
+                  style: TextStyle(color: MyColors().cyan, fontSize: 18),
+                )
+              : Container(),
+          movie.producer.isNotEmpty
+              ? Text("Producer: " + movie.producer,
+                  style: TextStyle(color: MyColors().cyan, fontSize: 18))
+              : Container()
+        ]),
       ),
       FloatingActionButton.extended(
         label: Text('Trailer',

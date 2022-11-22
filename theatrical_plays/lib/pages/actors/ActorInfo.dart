@@ -77,8 +77,9 @@ class _ActorInfoState extends State<ActorInfo> {
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                         child: Text(
-                          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam," +
-                              " quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                          "${actor.fullName} born 13 December 1982, is a Franco-British actor, scriptwriter and director. He adapted Shakespeare's Romeo and Juliet into his play R & J and he has written and staged his own plays, " +
+                              "including Le Porteur d'histoire, Le Cercle des illusionnistes, Edmond and Intra Muros. He has acted in a number of films, including Sagan by Diane Kurys and Le Chant du loup by Abel Lanzac and he has acted in a number of " +
+                              "TV series, mini-series, and TV films, including the series Kaboul Kitchen by Allan Mauduit and Jean-Patrick Benes. He has received various Molière awards for his plays.",
                           style:
                               TextStyle(color: MyColors().cyan, fontSize: 18),
                         ),
