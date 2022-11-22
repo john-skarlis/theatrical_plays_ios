@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Theater.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
+import 'package:theatrical_plays/using/SearchWidget.dart';
 
 import 'CompareTheaters.dart';
+import 'LoadingTheaters.dart';
 import 'TheaterInfo.dart';
 
 // ignore: must_be_immutable
@@ -16,6 +18,7 @@ class Theaters extends StatefulWidget {
 class _TheatersState extends State<Theaters> {
   List<Theater> theaters = [];
   _TheatersState({this.theaters});
+  String query = '';
 
   List<Theater> selectedTheaters = [];
 
@@ -26,6 +29,10 @@ class _TheatersState extends State<Theaters> {
       body: Container(
         child: Column(
           children: [
+            SearchWidget(
+                text: query,
+                hintText: 'Theater name',
+                onChanged: searchTheaters),
             Expanded(
               child: ListView.builder(
                   itemCount: theaters.length,
@@ -141,5 +148,32 @@ class _TheatersState extends State<Theaters> {
         ),
       ),
     );
+  }
+
+  Future searchTheaters(String query) async {
+    // final search = actors.where((actor) {
+    //   final searchActors = actor.fullName.toLowerCase();
+    //   final searchLower = query.toLowerCase();
+
+    //   return searchActors.contains(searchLower);
+    // }).toList();
+    // if (query.isEmpty) {
+    //   setState(() {
+    //     this.query = "";
+    //     this.actors = LoadingActors().createState().loadActors() as List<Actor>;
+    //   });
+    // } else {
+    //   setState(() {
+    //     this.query = query;
+    //     this.actors = search;
+    //   });
+    // }
+    final List<Theater> search =
+        await LoadingTheaters().createState().loadTheaters(query);
+    if (!mounted) return;
+    setState(() {
+      this.query = query;
+      this.theaters = search;
+    });
   }
 }
