@@ -38,14 +38,14 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             SizedBox(
-              height: 140,
+              height: 205,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
                     return buildActorTile(index);
                   },
                   separatorBuilder: (context, index) {
-                    return const SizedBox(width: 12);
+                    return const SizedBox(width: 20);
                   },
                   itemCount: homeActors.length),
             ),
@@ -64,14 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Divider(color: MyColors().gray),
             SizedBox(
-                height: 140,
+                height: 205,
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return buildMovieTile(index);
                     },
                     separatorBuilder: (context, index) {
-                      return const SizedBox(width: 12);
+                      return const SizedBox(width: 20);
                     },
                     itemCount: homeMovies.length)),
             SizedBox(
@@ -89,14 +89,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Divider(color: MyColors().gray),
             SizedBox(
-                height: 140,
+                height: 205,
                 child: ListView.separated(
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return buildTheaterTile(index);
                     },
                     separatorBuilder: (context, index) {
-                      return const SizedBox(width: 12);
+                      return const SizedBox(width: 20);
                     },
                     itemCount: homeTheaters.length)),
             SizedBox(
@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Image.network(homeActors[index].image),
             Center(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
                 child: CircleAvatar(
                   radius: 30.0,
                   backgroundImage: NetworkImage(homeActors[index].image),
@@ -147,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   homeActors[index].fullName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: MyColors().cyan, fontSize: 12),
+                  style: TextStyle(color: MyColors().cyan, fontSize: 14),
                 ),
               ),
             ),
@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Image.network(homeActors[index].image),
             Center(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
                 child: CircleAvatar(
                   radius: 30.0,
                   backgroundImage: NetworkImage(
@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   homeMovies[index].title,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: MyColors().cyan, fontSize: 10),
+                  style: TextStyle(color: MyColors().cyan, fontSize: 11),
                 ),
               ),
             )
@@ -196,7 +196,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Image.network(homeActors[index].image),
             Center(
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0.0, 2.0, 0.0, 0.0),
+                padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
                 child: CircleAvatar(
                   radius: 30.0,
                   backgroundImage: NetworkImage(
@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   homeTheaters[index].title,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: MyColors().cyan, fontSize: 12),
+                  style: TextStyle(color: MyColors().cyan, fontSize: 14),
                 ),
               ),
             )
