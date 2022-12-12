@@ -7,8 +7,7 @@ class Loading extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors().black,
-      body: Padding(
-        padding: EdgeInsets.all(50.0),
+      body: Center(
         child: SpinKitWave(
           color: MyColors().cyan,
           size: 40.0,
