@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Theater.dart';
 import 'package:theatrical_plays/pages/theaters/TheaterMovieSection.dart';
 import 'package:theatrical_plays/pages/theaters/TheaterProfile.dart';
+import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
@@ -23,7 +24,8 @@ class _TheaterInfoState extends State<TheaterInfo> {
   // ignore: missing_return
   Future<Theater> loadTheater() async {
     try {
-      Uri uri = Uri.parse("http://195.251.123.174:8080/api/venues/$theaterId");
+      Uri uri = Uri.parse(
+          "http://${Constants().hostName}:8080/api/venues/$theaterId");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 

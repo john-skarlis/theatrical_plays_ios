@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/models/Production.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
+import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SmallLoading.dart';
 
@@ -27,7 +28,7 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
   Future<List<Production>> loadProductions() async {
     try {
       Uri uri = Uri.parse(
-          "http://195.251.123.174:8080/api/people/$actorId/productions");
+          "http://${Constants().hostName}:8080/api/people/$actorId/productions");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Actor.dart';
 import 'package:theatrical_plays/pages/actors/Actors.dart';
+import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 
 class LoadingActors extends StatefulWidget {
@@ -17,7 +18,7 @@ class _LoadingActorsState extends State<LoadingActors> {
   // ignore: missing_return
   Future<List<Actor>> loadActors(String query) async {
     try {
-      Uri uri = Uri.parse("http://195.251.123.174:8080/api/people");
+      Uri uri = Uri.parse("http://${Constants().hostName}:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       if (data.statusCode == 200) {
         var jsonData = jsonDecode(data.body);

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
+import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SmallLoading.dart';
 
@@ -24,7 +25,7 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
   Future<List<Movie>> loadRelatedMovies() async {
     try {
       Uri uri = Uri.parse(
-          "http://195.251.123.174:8080/api/venues/$theaterId/productions");
+          "http://${Constants().hostName}:8080/api/venues/$theaterId/productions");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/pages/movies/MovieProfile.dart';
+import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
@@ -26,8 +27,8 @@ class _MovieInfoState extends State<MovieInfo> {
   // ignore: missing_return
   Future<Movie> loadMovie() async {
     try {
-      Uri uri =
-          Uri.parse("http://195.251.123.174:8080/api/productions/$movieId");
+      Uri uri = Uri.parse(
+          "http://${Constants().hostName}:8080/api/productions/$movieId");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
       if (jsonData['data']['mediaURL'] == "") {

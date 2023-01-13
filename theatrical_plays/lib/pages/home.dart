@@ -26,7 +26,6 @@ class _HomeState extends State<Home> {
     LoadingMovies(),
     LoadingTheaters()
   ];
-  //https://www.youtube.com/watch?v=8YsO1FOLy5s
 
   final PageController controller = PageController(initialPage: 0);
 

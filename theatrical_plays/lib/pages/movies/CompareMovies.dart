@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:theatrical_plays/models/ChartCompMovie.dart';
 import 'package:theatrical_plays/models/CompMovie.dart';
 import 'package:theatrical_plays/models/Movie.dart';
+import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
@@ -36,7 +37,7 @@ class _CompareMoviesState extends State<CompareMovies> {
         movieId = item.id;
         print(item.id);
         Uri uri = Uri.parse(
-            "http://195.251.123.174:8080/api/productions/$movieId/events");
+            "http://${Constants().hostName}:8080/api/productions/$movieId/events");
         Response data = await get(uri, headers: {"Accept": "application/json"});
         var jsonData = jsonDecode(data.body);
 

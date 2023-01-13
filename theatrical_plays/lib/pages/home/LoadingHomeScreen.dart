@@ -6,6 +6,7 @@ import 'package:theatrical_plays/models/Actor.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/models/Theater.dart';
 import 'package:theatrical_plays/pages/home/HomeScreen.dart';
+import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 
 class LoadingHomeScreen extends StatefulWidget {
@@ -23,7 +24,8 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
     loadHomeActors();
     loadHomeTheaters();
     try {
-      Uri uri = Uri.parse("http://195.251.123.174:8080/api/productions");
+      Uri uri =
+          Uri.parse("http://${Constants().hostName}:8080/api/productions");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
 
@@ -57,7 +59,7 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
     // loadHomeMovies();
     // loadHomeTheaters();
     try {
-      Uri uri = Uri.parse("http://195.251.123.174:8080/api/people");
+      Uri uri = Uri.parse("http://${Constants().hostName}:8080/api/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       if (data.statusCode == 200) {
         var jsonData = jsonDecode(data.body);
@@ -85,7 +87,7 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
 
   // ignore: missing_return
   Future<List<Theater>> loadHomeTheaters() async {
-    Uri uri = Uri.parse("http://195.251.123.174:8080/api/venues");
+    Uri uri = Uri.parse("http://${Constants().hostName}:8080/api/venues");
     Response data = await get(uri, headers: {"Accept": "application/json"});
     var jsonData = jsonDecode(data.body);
 
