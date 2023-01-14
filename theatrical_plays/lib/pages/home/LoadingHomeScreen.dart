@@ -70,8 +70,12 @@ class _LoadingHomeScreenState extends State<LoadingHomeScreen> {
             if (counter < 6 && oldActor['id'] != 1908) {
               Actor actor = new Actor(
                   oldActor['image'], oldActor['id'], oldActor['fullName']);
-              actors.add(actor);
-              counter++;
+              if (RegExp(
+                      r"^\s*([A-Za-zα-ωΑ-Ω]{1,}([\.,] |[-']| ))+[A-Za-zΑ-Ωα-ω]+\.?\s*$")
+                  .hasMatch(actor.fullName)) {
+                actors.add(actor);
+                counter++;
+              }
             }
           }
         }

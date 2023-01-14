@@ -30,7 +30,8 @@ class _ActorInfoState extends State<ActorInfo> {
           Uri.parse("http://${Constants().hostName}:8080/api/people/$actorId");
       Response data = await get(uri, headers: {"Accept": "application/json"});
       var jsonData = jsonDecode(data.body);
-      if (jsonData['data']['image'] == null) {
+      if (jsonData['data']['image'] == null ||
+          jsonData['data']['image'] == '') {
         jsonData['data']['image'] =
             'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
       }

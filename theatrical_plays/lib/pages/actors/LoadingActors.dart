@@ -30,7 +30,11 @@ class _LoadingActorsState extends State<LoadingActors> {
           }
           Actor actor = new Actor(
               oldActor['image'], oldActor['id'], oldActor['fullName']);
-          actors.add(actor);
+          if (RegExp(
+                  r"^\s*([A-Za-zα-ωΑ-Ω]{1,}([\.,] |[-']| ))+[A-Za-zΑ-Ωα-ω]+\.?\s*$")
+              .hasMatch(actor.fullName)) {
+            actors.add(actor);
+          }
         }
 
         return actors.where((actor) {
