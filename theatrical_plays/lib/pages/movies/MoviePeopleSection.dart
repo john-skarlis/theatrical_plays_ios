@@ -25,28 +25,30 @@ class _MoviePeopleSectionState extends State<MoviePeopleSection> {
   Future<List<RelatedActor>> loadRelatedActors() async {
     try {
       Uri uri = Uri.parse(
-          "http://195.251.123.174:8080/api/productions/$movieId/people");
+          "http://${Constants().hostName}:8080/api/productions/$movieId/people");
       Response data = await get(uri, headers: {"Accept": "application/json"});
-      var jsonData = jsonDecode(data.body);
+      if (data.statusCode == 200) {
+        var jsonData = jsonDecode(data.body);
 
-      for (var oldRelatedActor in jsonData['data']) {
-        if (oldRelatedActor['image'] == null ||
-            oldRelatedActor['image'] == '') {
-          oldRelatedActor['image'] =
-              'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
-        }
-        RelatedActor relatedActor = new RelatedActor(
-            oldRelatedActor['role'],
-            oldRelatedActor['image'],
-            oldRelatedActor['id'],
-            oldRelatedActor['fullName']);
+        for (var oldRelatedActor in jsonData['data']) {
+          if (oldRelatedActor['image'] == null ||
+              oldRelatedActor['image'] == '') {
+            oldRelatedActor['image'] =
+                'http://www.macunepimedium.com/wp-content/uploads/2019/04/male-icon.jpg';
+          }
+          RelatedActor relatedActor = new RelatedActor(
+              oldRelatedActor['role'],
+              oldRelatedActor['image'],
+              oldRelatedActor['id'],
+              oldRelatedActor['fullName']);
 
-        if (relatedActor.role == null) {
-          relatedActor.role = "No role found";
+          if (relatedActor.role == null) {
+            relatedActor.role = "No role found";
+          }
+          relatedActors.add(relatedActor);
         }
-        relatedActors.add(relatedActor);
+        return relatedActors;
       }
-      return relatedActors;
     } on Exception {
       print('error data');
     }

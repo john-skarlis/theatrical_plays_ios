@@ -44,7 +44,7 @@ class _CompareMoviesState extends State<CompareMovies> {
         if (jsonData['data'].toString() == '[]') {
           print("Null data");
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(item.title + " has null price."),
+            content: Text(item.title + " has no event."),
           ));
           break;
         } else {
@@ -99,21 +99,27 @@ class _CompareMoviesState extends State<CompareMovies> {
       backgroundColor: MyColors().black,
       body: Container(
         child: SfCartesianChart(
+            margin: EdgeInsets.fromLTRB(20, 30, 20, 30),
             series: <ChartSeries>[
               ColumnSeries<ChartCompMovie, String>(
                   dataSource: chartMovies,
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  pointColorMapper: (ChartCompMovie movie, _) =>
+                      movie.columnColor,
                   xValueMapper: (ChartCompMovie movie, _) =>
                       movie.title.characters.take(10).toString(),
                   yValueMapper: (ChartCompMovie movie, _) => movie.priceRange)
             ],
             tooltipBehavior: TooltipBehavior(
-                enable: true, header: 'Movie', format: 'point.x: point.y€'
-                // builder: (data, point, series, pointIndex, seriesIndex) {
-                //   return Container(child: Text('PointIndex : ${point}'));
-                // },
-                ),
-            primaryXAxis: CategoryAxis(),
-            borderColor: MyColors().black,
+                enable: true, header: 'Movie', format: 'point.x: point.y€'),
+            primaryXAxis: CategoryAxis(
+              majorGridLines: MajorGridLines(width: 0),
+              axisLine: AxisLine(width: 0),
+            ),
+            // primaryYAxis: CategoryAxis(
+            //   majorGridLines: MajorGridLines(width: 0),
+            //   axisLine: AxisLine(width: 0),
+            // ),
             backgroundColor: MyColors().black),
       ),
     );
@@ -122,6 +128,8 @@ class _CompareMoviesState extends State<CompareMovies> {
   castPrice(List<CompMovie> compareMovies) {
     var doubleRE = RegExp(r"-?(?:\d*\.)?\d+(?:[eE][+-]?\d+)?");
     var clearPrice;
+    var colors = [Colors.red, Colors.teal, Colors.orange, Colors.brown];
+    var colorCounter = 0;
     print("Clear price values");
     for (var item in compareMovies) {
       //clear the number values from priceRenge
@@ -133,20 +141,21 @@ class _CompareMoviesState extends State<CompareMovies> {
       if (numbers.isNotEmpty) {
         clearPrice = numbers.reduce(max);
       } else {
-        clearPrice = 0.0;
+        clearPrice = 12.0;
       }
       if (clearPrice == null) {
-        clearPrice = 0.0;
+        clearPrice = 11.0;
       }
       var labelTitle = castMovieTitle(item.title);
-      ChartCompMovie chartCompMovie =
-          new ChartCompMovie(item.id, item.title, clearPrice, labelTitle);
+      ChartCompMovie chartCompMovie = new ChartCompMovie(
+          item.id, item.title, clearPrice, item.title, colors[colorCounter]);
       chartMovies.add(chartCompMovie);
+      colorCounter += 1;
     }
   }
 
   String castMovieTitle(String title) {
-    var labelTitle = title.characters.take(9).toString();
+    var labelTitle = title.characters.take(10).toString();
     return labelTitle;
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 import 'package:theatrical_plays/models/Theater.dart';
@@ -55,7 +57,13 @@ class TheaterProfile extends StatelessWidget {
     );
   }
 
-  _launchMap(String address) {
-    MapsLauncher.launchQuery(address);
+  _launchMap(String address) async {
+    if (Platform.isIOS) {
+      try {
+        await MapsLauncher.launchQuery(address);
+      } catch (e) {
+        print(e);
+      }
+    }
   }
 }

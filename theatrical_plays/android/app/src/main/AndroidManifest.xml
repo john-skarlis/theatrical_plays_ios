@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.johnskarlis.theatrical_plays">
    <application
-        android:label="theatrical_plays"
+        android:label="Theatrical analytics"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

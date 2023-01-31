@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
         // ignore: deprecated_member_use
         brightness: Brightness.dark,
         title: Text(
-          'Theatrical plays',
+          'Theatrical analytics',
           style: TextStyle(color: MyColors().cyan),
         ),
         backgroundColor: MyColors().black,
