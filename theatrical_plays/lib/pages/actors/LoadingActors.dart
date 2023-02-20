@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Actor.dart';
 import 'package:theatrical_plays/pages/actors/Actors.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 
@@ -16,10 +17,14 @@ class _LoadingActorsState extends State<LoadingActors> {
   List<Actor> actors = [];
   //load actos data from api
   // ignore: missing_return
-  Future<List<Actor>> loadActors(String query) async {
+  Future<List<Actor>> loadActors() async {
     try {
       Uri uri = Uri.parse("http://${Constants().hostName}:8080/api/people");
-      Response data = await get(uri, headers: {"Accept": "application/json"});
+      Response data = await get(uri, headers: {
+        "Accept": "application/json",
+        "authorization":
+            "${await AuthorizationStore.getStoreValue("authorization")}"
+      });
       if (data.statusCode == 200) {
         var jsonData = jsonDecode(data.body);
 
@@ -37,12 +42,7 @@ class _LoadingActorsState extends State<LoadingActors> {
           }
         }
 
-        return actors.where((actor) {
-          final actorNameToLowerCase = actor.fullName.toLowerCase();
-          final queryToLowerCase = query.toLowerCase();
-
-          return actorNameToLowerCase.contains(queryToLowerCase);
-        }).toList();
+        return actors;
       } else {
         print("Api status code error");
       }
@@ -56,7 +56,7 @@ class _LoadingActorsState extends State<LoadingActors> {
     return Scaffold(
         body: FutureBuilder(
             // call and show the actors
-            future: loadActors(''),
+            future: loadActors(),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Actor>> snapshot) {
               if (!snapshot.hasData) {

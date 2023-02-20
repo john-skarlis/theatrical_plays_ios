@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Actor.dart';
 import 'package:theatrical_plays/pages/actors/ActorInfo.dart';
-import 'package:theatrical_plays/pages/actors/LoadingActors.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SearchWidget.dart';
 
@@ -17,6 +16,12 @@ class _ActorsState extends State<Actors> {
   List<Actor> actors = [];
   String query = '';
   _ActorsState({this.actors});
+  List<Actor> actorsToSearch = [];
+  void initState() {
+    actorsToSearch = List.from(actors);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +40,6 @@ class _ActorsState extends State<Actors> {
                           MaterialPageRoute(
                               builder: (context) =>
                                   ActorInfo(actors[index].id)));
-                      // print(index);
                     },
                     leading: Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
@@ -63,29 +67,29 @@ class _ActorsState extends State<Actors> {
       );
 
   Future searchActors(String query) async {
-    // final search = actors.where((actor) {
-    //   final searchActors = actor.fullName.toLowerCase();
-    //   final searchLower = query.toLowerCase();
+    final search = actorsToSearch.where((actor) {
+      final searchActors = actor.fullName.toLowerCase();
+      final searchLower = query.toLowerCase();
 
-    //   return searchActors.contains(searchLower);
-    // }).toList();
-    // if (query.isEmpty) {
-    //   setState(() {
-    //     this.query = "";
-    //     this.actors = LoadingActors().createState().loadActors() as List<Actor>;
-    //   });
-    // } else {
-    //   setState(() {
-    //     this.query = query;
-    //     this.actors = search;
-    //   });
-    // }
-    final List<Actor> search =
-        await LoadingActors().createState().loadActors(query);
-    if (!mounted) return;
-    setState(() {
-      this.query = query;
-      this.actors = search;
-    });
+      return searchActors.contains(searchLower);
+    }).toList();
+    if (query.isEmpty) {
+      setState(() {
+        this.query = "";
+        this.actors = actorsToSearch;
+      });
+    } else {
+      setState(() {
+        this.query = query;
+        this.actors = search;
+      });
+    }
+    // final List<Actor> search =
+    //     await LoadingActors().createState().loadActors(query);
+    // if (!mounted) return;
+    // setState(() {
+    //   this.query = query;
+    //   this.actors = search;
+    // });
   }
 }

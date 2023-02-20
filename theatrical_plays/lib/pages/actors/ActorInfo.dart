@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Actor.dart';
 import 'package:theatrical_plays/pages/actors/BodyProfileWidget.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
@@ -28,7 +29,11 @@ class _ActorInfoState extends State<ActorInfo> {
     try {
       Uri uri =
           Uri.parse("http://${Constants().hostName}:8080/api/people/$actorId");
-      Response data = await get(uri, headers: {"Accept": "application/json"});
+      Response data = await get(uri, headers: {
+        "Accept": "application/json",
+        "authorization":
+            "${await AuthorizationStore.getStoreValue("authorization")}"
+      });
       var jsonData = jsonDecode(data.body);
       if (jsonData['data']['image'] == null ||
           jsonData['data']['image'] == '') {

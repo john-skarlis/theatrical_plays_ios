@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:theatrical_plays/pages/home/LoadingHomeScreen.dart';
+import 'package:theatrical_plays/pages/home/LoginScreen.dart';
 import 'package:theatrical_plays/pages/theaters/LoadingTheaters.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 
 import 'actors/LoadingActors.dart';
@@ -42,6 +44,13 @@ class _HomeState extends State<Home> {
           'Theatrical analytics',
           style: TextStyle(color: MyColors().cyan),
         ),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.exit_to_app, color: MyColors().white),
+              onPressed: () {
+                logout();
+              })
+        ],
         backgroundColor: MyColors().black,
       ),
       //bottom navigation bar size colors an snake shape
@@ -101,5 +110,11 @@ class _HomeState extends State<Home> {
       _selectedItemPosition = index;
       controller.jumpToPage(index);
     });
+  }
+
+  void logout() {
+    AuthorizationStore.deleteAllValuesFromStore();
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 }

@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   _HomeScreenState({this.homeMovies, this.homeActors, this.homeTheaters});
   @override
   Widget build(BuildContext context) {
-    // print(homeActors[0].fullName);
     return Scaffold(
       backgroundColor: MyColors().black,
       body: Container(
@@ -159,7 +158,6 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Card(
           color: MyColors().black,
           child: Wrap(children: <Widget>[
-            // Image.network(homeActors[index].image),
             Center(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),

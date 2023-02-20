@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SmallLoading.dart';
@@ -26,7 +27,11 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
     try {
       Uri uri = Uri.parse(
           "http://${Constants().hostName}:8080/api/venues/$theaterId/productions");
-      Response data = await get(uri, headers: {"Accept": "application/json"});
+      Response data = await get(uri, headers: {
+        "Accept": "application/json",
+        "authorization":
+            "${await AuthorizationStore.getStoreValue("authorization")}"
+      });
       var jsonData = jsonDecode(data.body);
 
       for (var oldRelatedMovie in jsonData['data']['content']) {

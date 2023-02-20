@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/RelatedActor.dart';
 import 'package:theatrical_plays/pages/actors/ActorInfo.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
-import 'package:theatrical_plays/using/SmallLoading.dart';
 
 class MoviePeopleSection extends StatefulWidget {
   final int movieId;
@@ -26,7 +26,11 @@ class _MoviePeopleSectionState extends State<MoviePeopleSection> {
     try {
       Uri uri = Uri.parse(
           "http://${Constants().hostName}:8080/api/productions/$movieId/people");
-      Response data = await get(uri, headers: {"Accept": "application/json"});
+      Response data = await get(uri, headers: {
+        "Accept": "application/json",
+        "authorization":
+            "${await AuthorizationStore.getStoreValue("authorization")}"
+      });
       if (data.statusCode == 200) {
         var jsonData = jsonDecode(data.body);
 
@@ -62,7 +66,13 @@ class _MoviePeopleSectionState extends State<MoviePeopleSection> {
         builder:
             (BuildContext context, AsyncSnapshot<List<RelatedActor>> snapshot) {
           if (!snapshot.hasData) {
-            return SmallLoading();
+            return Container(
+              child: Center(
+                  child: Text(
+                'There is no availiable actors',
+                style: TextStyle(color: Colors.white70, fontSize: 18),
+              )),
+            );
           } else if (snapshot.hasError) {
             return Center(
               child: Text("error loading",

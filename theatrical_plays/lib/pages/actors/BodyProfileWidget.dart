@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/models/Production.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SmallLoading.dart';
@@ -29,7 +30,11 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
     try {
       Uri uri = Uri.parse(
           "http://${Constants().hostName}:8080/api/people/$actorId/productions");
-      Response data = await get(uri, headers: {"Accept": "application/json"});
+      Response data = await get(uri, headers: {
+        "Accept": "application/json",
+        "authorization":
+            "${await AuthorizationStore.getStoreValue("authorization")}"
+      });
       var jsonData = jsonDecode(data.body);
 
       for (var oldProduction in jsonData['data']['content']) {

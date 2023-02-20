@@ -8,6 +8,7 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:theatrical_plays/models/ChartCompMovie.dart';
 import 'package:theatrical_plays/models/CompMovie.dart';
 import 'package:theatrical_plays/models/Movie.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
@@ -38,7 +39,11 @@ class _CompareMoviesState extends State<CompareMovies> {
         print(item.id);
         Uri uri = Uri.parse(
             "http://${Constants().hostName}:8080/api/productions/$movieId/events");
-        Response data = await get(uri, headers: {"Accept": "application/json"});
+        Response data = await get(uri, headers: {
+          "Accept": "application/json",
+          "authorization":
+              "${await AuthorizationStore.getStoreValue("authorization")}"
+        });
         var jsonData = jsonDecode(data.body);
 
         if (jsonData['data'].toString() == '[]') {
@@ -106,20 +111,16 @@ class _CompareMoviesState extends State<CompareMovies> {
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   pointColorMapper: (ChartCompMovie movie, _) =>
                       movie.columnColor,
-                  xValueMapper: (ChartCompMovie movie, _) =>
-                      movie.title.characters.take(10).toString(),
+                  xValueMapper: (ChartCompMovie movie, _) => movie.title,
                   yValueMapper: (ChartCompMovie movie, _) => movie.priceRange)
             ],
             tooltipBehavior: TooltipBehavior(
                 enable: true, header: 'Movie', format: 'point.x: point.y€'),
             primaryXAxis: CategoryAxis(
-              majorGridLines: MajorGridLines(width: 0),
-              axisLine: AxisLine(width: 0),
-            ),
-            // primaryYAxis: CategoryAxis(
-            //   majorGridLines: MajorGridLines(width: 0),
-            //   axisLine: AxisLine(width: 0),
-            // ),
+                majorGridLines: MajorGridLines(width: 0),
+                axisLine: AxisLine(width: 0),
+                maximumLabelWidth: 90.0,
+                labelIntersectAction: AxisLabelIntersectAction.wrap),
             backgroundColor: MyColors().black),
       ),
     );
@@ -146,16 +147,11 @@ class _CompareMoviesState extends State<CompareMovies> {
       if (clearPrice == null) {
         clearPrice = 11.0;
       }
-      var labelTitle = castMovieTitle(item.title);
+
       ChartCompMovie chartCompMovie = new ChartCompMovie(
           item.id, item.title, clearPrice, item.title, colors[colorCounter]);
       chartMovies.add(chartCompMovie);
       colorCounter += 1;
     }
-  }
-
-  String castMovieTitle(String title) {
-    var labelTitle = title.characters.take(10).toString();
-    return labelTitle;
   }
 }

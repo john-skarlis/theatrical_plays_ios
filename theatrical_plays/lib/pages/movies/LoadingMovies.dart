@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:theatrical_plays/models/Movie.dart';
 import 'package:theatrical_plays/pages/movies/Movies.dart';
+import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/Loading.dart';
 
@@ -17,31 +18,34 @@ class _LoadingMoviesState extends State<LoadingMovies> {
 
 //fetch data from api
   // ignore: missing_return
-  Future<List<Movie>> loadMovies(String query) async {
+  Future<List<Movie>> loadMovies() async {
     Uri uri = Uri.parse("http://${Constants().hostName}:8080/api/productions");
-    Response data = await get(uri, headers: {"Accept": "application/json"});
+    Response data = await get(uri, headers: {
+      "Accept": "application/json",
+      "authorization":
+          "${await AuthorizationStore.getStoreValue("authorization")}"
+    });
     var jsonData = jsonDecode(data.body);
 
     try {
       for (var oldMovie in jsonData['data']['content']) {
+        if (oldMovie['mediaURL'] == null || oldMovie['mediaURL'] == '') {
+          oldMovie['mediaURL'] =
+              'https://thumbs.dreamstime.com/z/print-178440812.jpg';
+        }
         Movie movie = new Movie(
             oldMovie['id'],
             oldMovie['title'],
             oldMovie['ticketUrl'],
             oldMovie['producer'],
-            oldMovie['mediaUrl'],
+            oldMovie['mediaURL'],
             oldMovie['duration'],
             oldMovie['description'],
             false);
 
         movies.add(movie);
       }
-      return movies.where((movie) {
-        final movietitleToLowerCase = movie.title.toLowerCase();
-        final queryToLowerCase = query.toLowerCase();
-
-        return movietitleToLowerCase.contains(queryToLowerCase);
-      }).toList();
+      return movies;
     } on Exception {
       print('error data');
     }
@@ -51,7 +55,7 @@ class _LoadingMoviesState extends State<LoadingMovies> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: FutureBuilder(
-            future: loadMovies(''),
+            future: loadMovies(),
             builder:
                 (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
               if (!snapshot.hasData) {

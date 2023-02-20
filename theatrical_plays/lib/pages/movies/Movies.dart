@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:theatrical_plays/models/Movie.dart';
-import 'package:theatrical_plays/pages/movies/LoadingMovies.dart';
 import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SearchWidget.dart';
@@ -19,8 +18,13 @@ class Movies extends StatefulWidget {
 class _MoviesState extends State<Movies> {
   List<Movie> movies = [];
   _MoviesState({this.movies});
+  List<Movie> moviesToSearch = [];
   String query = '';
   List<Movie> selectedMovies = [];
+  void initState() {
+    moviesToSearch = List.from(movies);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,29 +157,22 @@ class _MoviesState extends State<Movies> {
       );
 
   Future searchMovies(String query) async {
-    // final search = actors.where((actor) {
-    //   final searchActors = actor.fullName.toLowerCase();
-    //   final searchLower = query.toLowerCase();
+    final search = moviesToSearch.where((movie) {
+      final searchMovies = movie.title.toLowerCase();
+      final searchLower = query.toLowerCase();
 
-    //   return searchActors.contains(searchLower);
-    // }).toList();
-    // if (query.isEmpty) {
-    //   setState(() {
-    //     this.query = "";
-    //     this.actors = LoadingActors().createState().loadActors() as List<Actor>;
-    //   });
-    // } else {
-    //   setState(() {
-    //     this.query = query;
-    //     this.actors = search;
-    //   });
-    // }
-    final List<Movie> search =
-        await LoadingMovies().createState().loadMovies(query);
-    if (!mounted) return;
-    setState(() {
-      this.query = query;
-      this.movies = search;
-    });
+      return searchMovies.contains(searchLower);
+    }).toList();
+    if (query.isEmpty) {
+      setState(() {
+        this.query = "";
+        this.movies = moviesToSearch;
+      });
+    } else {
+      setState(() {
+        this.query = query;
+        this.movies = search;
+      });
+    }
   }
 }

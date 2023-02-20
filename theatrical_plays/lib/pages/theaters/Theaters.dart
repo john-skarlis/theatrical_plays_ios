@@ -4,7 +4,6 @@ import 'package:theatrical_plays/using/MyColors.dart';
 import 'package:theatrical_plays/using/SearchWidget.dart';
 
 import 'CompareTheaters.dart';
-import 'LoadingTheaters.dart';
 import 'TheaterInfo.dart';
 
 // ignore: must_be_immutable
@@ -19,8 +18,12 @@ class _TheatersState extends State<Theaters> {
   List<Theater> theaters = [];
   _TheatersState({this.theaters});
   String query = '';
-
+  List<Theater> theatersToSearch = [];
   List<Theater> selectedTheaters = [];
+  void initState() {
+    theatersToSearch = List.from(theaters);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,29 +154,22 @@ class _TheatersState extends State<Theaters> {
   }
 
   Future searchTheaters(String query) async {
-    // final search = actors.where((actor) {
-    //   final searchActors = actor.fullName.toLowerCase();
-    //   final searchLower = query.toLowerCase();
+    final search = theatersToSearch.where((theater) {
+      final searchActors = theater.title.toLowerCase();
+      final searchLower = query.toLowerCase();
 
-    //   return searchActors.contains(searchLower);
-    // }).toList();
-    // if (query.isEmpty) {
-    //   setState(() {
-    //     this.query = "";
-    //     this.actors = LoadingActors().createState().loadActors() as List<Actor>;
-    //   });
-    // } else {
-    //   setState(() {
-    //     this.query = query;
-    //     this.actors = search;
-    //   });
-    // }
-    final List<Theater> search =
-        await LoadingTheaters().createState().loadTheaters(query);
-    if (!mounted) return;
-    setState(() {
-      this.query = query;
-      this.theaters = search;
-    });
+      return searchActors.contains(searchLower);
+    }).toList();
+    if (query.isEmpty) {
+      setState(() {
+        this.query = "";
+        this.theaters = theatersToSearch;
+      });
+    } else {
+      setState(() {
+        this.query = query;
+        this.theaters = search;
+      });
+    }
   }
 }
