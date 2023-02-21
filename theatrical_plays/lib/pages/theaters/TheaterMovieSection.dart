@@ -59,7 +59,13 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
         future: loadRelatedMovies(),
         builder: (BuildContext context, AsyncSnapshot<List<Movie>> snapshot) {
           if (!snapshot.hasData) {
-            return SmallLoading();
+            return Container(
+              child: Center(
+                  child: Text(
+                'There is no availiable actors',
+                style: TextStyle(color: Colors.white70, fontSize: 18),
+              )),
+            );
           } else if (snapshot.hasError) {
             return Center(
               child: Text("error loading",

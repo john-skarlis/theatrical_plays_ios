@@ -74,7 +74,7 @@ class _TheaterInfoState extends State<TheaterInfo> {
                       padding: EdgeInsets.fromLTRB(0, 5, 0, 15),
                       child: Text('Related Movies',
                           style:
-                              TextStyle(color: MyColors().cyan, fontSize: 22)),
+                              TextStyle(color: MyColors().cyan, fontSize: 20)),
                     )),
                     TheaterMovieSection(theaterId)
                   ],
