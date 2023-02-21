@@ -77,19 +77,17 @@ class _ActorInfoState extends State<ActorInfo> {
                     Center(
                         child: Padding(
                       padding: EdgeInsets.fromLTRB(0, 5, 0, 15),
-                      child: Text('Bio',
+                      child: Text('Biography',
                           style:
-                              TextStyle(color: MyColors().cyan, fontSize: 22)),
+                              TextStyle(color: MyColors().cyan, fontSize: 18)),
                     )),
                     Container(
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                         child: Text(
-                          "${actor.fullName} born 13 December 1982, is a Franco-British actor, scriptwriter and director. He adapted Shakespeare's Romeo and Juliet into his play R & J and he has written and staged his own plays, " +
-                              "including Le Porteur d'histoire, Le Cercle des illusionnistes, Edmond and Intra Muros. He has acted in a number of films, including Sagan by Diane Kurys and Le Chant du loup by Abel Lanzac and he has acted in a number of " +
-                              "TV series, mini-series, and TV films, including the series Kaboul Kitchen by Allan Mauduit and Jean-Patrick Benes. He has received various Molière awards for his plays.",
-                          style:
-                              TextStyle(color: MyColors().cyan, fontSize: 18),
+                          "${actor.fullName} γεννήθηκε το 1959 στην Ορεστιάδα. " +
+                              "Σπούδασε Πολιτικές Επιστήμες στο Πάντειο Πανεπιστήμιο (χωρίς όμως να αποφοιτήσει) και στη Σχολή Κινηματογράφου και Τηλεόρασης του Λυκούργου Σταυράκου. Πριν ασχοληθεί με τη συγγραφή ήθελε να γίνει αθλητικογράφος.",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
                     ),
@@ -99,7 +97,7 @@ class _ActorInfoState extends State<ActorInfo> {
                       padding: EdgeInsets.fromLTRB(0, 5, 0, 15),
                       child: Text('Relateded Productions',
                           style:
-                              TextStyle(color: MyColors().cyan, fontSize: 22)),
+                              TextStyle(color: MyColors().cyan, fontSize: 18)),
                     )),
                     BodyProfileWidget(actor.id)
                   ],
