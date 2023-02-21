@@ -27,11 +27,17 @@ class _MovieProfile extends State<MovieProfile> {
           ),
         ),
       ),
+      Divider(color: MyColors().gray),
+      Padding(
+        padding: EdgeInsets.fromLTRB(10, 5, 0, 15),
+        child: Text('Description',
+            style: TextStyle(color: MyColors().cyan, fontSize: 18)),
+      ),
       Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
         child: Text(
-          "Description: " + movie.description,
-          style: TextStyle(color: MyColors().cyan, fontSize: 18),
+          movie.description,
+          style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
       Divider(color: MyColors().gray),
@@ -39,14 +45,28 @@ class _MovieProfile extends State<MovieProfile> {
         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           movie.duration.isNotEmpty
-              ? Text(
-                  "Duration: " + movie.duration + " h",
-                  style: TextStyle(color: MyColors().cyan, fontSize: 18),
+              ? RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: "Duration: ",
+                        style: TextStyle(color: MyColors().cyan, fontSize: 18)),
+                    TextSpan(
+                        text: movie.duration,
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                  ]),
                 )
               : Container(),
           movie.producer.isNotEmpty
-              ? Text("Producer: " + movie.producer,
-                  style: TextStyle(color: MyColors().cyan, fontSize: 18))
+              ? RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: "Producer: ",
+                        style: TextStyle(color: MyColors().cyan, fontSize: 18)),
+                    TextSpan(
+                        text: movie.producer,
+                        style: TextStyle(color: Colors.white, fontSize: 18)),
+                  ]),
+                )
               : Container()
         ]),
       ),
@@ -55,7 +75,7 @@ class _MovieProfile extends State<MovieProfile> {
             style: TextStyle(color: MyColors().cyan, fontSize: 18)), // <-- Text
         backgroundColor: MyColors().gray,
         onPressed: () {
-          _launchURL(movie.mediaUrl);
+          _launchURL(movie.title);
         },
       ),
     ]);
@@ -78,11 +98,12 @@ class _MovieProfile extends State<MovieProfile> {
     );
   }
 
-  _launchURL(String url) {
+  _launchURL(String query) async {
+    final url = 'https://www.youtube.com/results?search_query=$query';
     // ignore: deprecated_member_use
-    if (canLaunch(url) != null) {
+    if (await canLaunch(url) != null) {
       // ignore: deprecated_member_use
-      launch(url);
+      launchUrl(Uri.parse(url));
     } else {
       throw 'Could not launch $url';
     }
