@@ -7,7 +7,6 @@ import 'package:theatrical_plays/pages/movies/MovieInfo.dart';
 import 'package:theatrical_plays/using/AuthorizationStore.dart';
 import 'package:theatrical_plays/using/Constants.dart';
 import 'package:theatrical_plays/using/MyColors.dart';
-import 'package:theatrical_plays/using/SmallLoading.dart';
 
 class TheaterMovieSection extends StatefulWidget {
   final int theaterId;

@@ -51,8 +51,8 @@ class _MoviesState extends State<Movies> {
                         child: CircleAvatar(
                           radius: 30.0,
                           backgroundColor: Colors.white,
-                          backgroundImage: NetworkImage(
-                              'https://thumbs.dreamstime.com/z/print-178440812.jpg'),
+                          backgroundImage:
+                              NetworkImage('${movies[index].mediaUrl}'),
                         ),
                       ),
                       title: Text(
@@ -94,8 +94,11 @@ class _MoviesState extends State<Movies> {
                         SizedBox(
                             width: double.infinity,
                             // ignore: deprecated_member_use
-                            child: RaisedButton(
-                              color: MyColors().gray,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: MyColors()
+                                    .gray, // Set the background color of the button
+                              ),
                               child: Text(
                                 "Compare ticket prices (${selectedMovies.length})",
                                 style: TextStyle(
@@ -119,8 +122,11 @@ class _MoviesState extends State<Movies> {
                         SizedBox(
                             width: double.infinity,
                             // ignore: deprecated_member_use
-                            child: RaisedButton(
-                              color: MyColors().gray,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: MyColors()
+                                    .gray, // Set the background color of the button
+                              ),
                               child: Text(
                                 "Clear",
                                 style: TextStyle(

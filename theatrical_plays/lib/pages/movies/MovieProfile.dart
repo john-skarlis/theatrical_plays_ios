@@ -23,7 +23,7 @@ class _MovieProfile extends State<MovieProfile> {
           padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
           child: Text(
             movie.title,
-            style: TextStyle(color: MyColors().cyan, fontSize: 18),
+            style: TextStyle(color: MyColors().cyan, fontSize: 20),
           ),
         ),
       ),
@@ -31,7 +31,7 @@ class _MovieProfile extends State<MovieProfile> {
       Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 0, 15),
         child: Text('Description',
-            style: TextStyle(color: MyColors().cyan, fontSize: 18)),
+            style: TextStyle(color: MyColors().cyan, fontSize: 20)),
       ),
       Padding(
         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
@@ -85,16 +85,12 @@ class _MovieProfile extends State<MovieProfile> {
     final image =
         NetworkImage("https://thumbs.dreamstime.com/z/print-178440812.jpg");
 
-    return ClipOval(
-      child: Material(
-        color: Colors.transparent,
-        child: Ink.image(
-          image: image,
-          fit: BoxFit.cover,
-          width: 128,
-          height: 128,
-        ),
-      ),
+    return FadeInImage(
+      placeholder: NetworkImage(
+          'https://www.creativefabrica.com/wp-content/uploads/2021/01/14/theater-mask-actor-logo-vector-Graphics-7777527-1-1-580x387.jpg'),
+      image: NetworkImage(movie.mediaUrl),
+      width: 200, // set the desired width
+      height: 200, // set the desired height
     );
   }
 

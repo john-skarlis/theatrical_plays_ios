@@ -88,7 +88,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: MyColors().gray,
+                        backgroundColor: MyColors().gray,
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(30.0),
                             side: BorderSide(color: MyColors().cyan)),

@@ -100,8 +100,11 @@ class _TheatersState extends State<Theaters> {
                         SizedBox(
                             width: double.infinity,
                             // ignore: deprecated_member_use
-                            child: RaisedButton(
-                              color: MyColors().gray,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: MyColors()
+                                    .gray, // Set the background color of the button
+                              ),
                               child: Text(
                                 "Compare (${selectedTheaters.length})",
                                 style: TextStyle(
@@ -119,8 +122,11 @@ class _TheatersState extends State<Theaters> {
                         SizedBox(
                             width: double.infinity,
                             // ignore: deprecated_member_use
-                            child: RaisedButton(
-                              color: MyColors().gray,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: MyColors()
+                                    .gray, // Set the background color of the button
+                              ),
                               child: Text(
                                 "Clear",
                                 style: TextStyle(

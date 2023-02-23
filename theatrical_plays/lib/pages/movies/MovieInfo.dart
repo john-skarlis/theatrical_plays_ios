@@ -86,7 +86,7 @@ class _MovieInfoState extends State<MovieInfo> {
                       padding: EdgeInsets.fromLTRB(0, 5, 0, 15),
                       child: Text('Relateded Actors',
                           style:
-                              TextStyle(color: MyColors().cyan, fontSize: 22)),
+                              TextStyle(color: MyColors().cyan, fontSize: 20)),
                     )),
                     MoviePeopleSection(movie.id),
                   ],
