@@ -44,7 +44,7 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
             oldProduction['title'],
             oldProduction['ticketUrl'],
             oldProduction['producer'],
-            oldProduction['mediaUrl'],
+            oldProduction['mediaURL'],
             oldProduction['duration'],
             oldProduction['description']);
 
@@ -53,7 +53,7 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
             oldProduction['title'],
             oldProduction['ticketUrl'],
             oldProduction['producer'],
-            oldProduction['mediaUrl'],
+            oldProduction['mediaURL'],
             oldProduction['duration'],
             oldProduction['description'],
             false);
@@ -101,8 +101,8 @@ class _BodyProfileWidgetState extends State<BodyProfileWidget> {
                               const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                           child: CircleAvatar(
                             radius: 30.0,
-                            backgroundImage: NetworkImage(
-                                'https://thumbs.dreamstime.com/z/print-178440812.jpg'),
+                            backgroundImage:
+                                NetworkImage(productions[index].mediaUrl),
                           ),
                         ),
                         title: Text(
