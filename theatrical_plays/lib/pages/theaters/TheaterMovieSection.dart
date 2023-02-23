@@ -34,6 +34,11 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
       var jsonData = jsonDecode(data.body);
 
       for (var oldRelatedMovie in jsonData['data']['content']) {
+        if (oldRelatedMovie['mediauURL'] == null ||
+            oldRelatedMovie['mediauURL'] == '') {
+          oldRelatedMovie['mediauURL'] =
+              'https://thumbs.dreamstime.com/z/print-178440812.jpg';
+        }
         Movie relatedMovie = new Movie(
             oldRelatedMovie['id'],
             oldRelatedMovie['title'],
@@ -90,14 +95,12 @@ class _TheaterMovieSectionState extends State<TheaterMovieSection> {
                               const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
                           child: CircleAvatar(
                             radius: 30.0,
-                            backgroundImage: NetworkImage(
-                                'https://thumbs.dreamstime.com/z/print-178440812.jpg'),
+                            backgroundImage:
+                                NetworkImage(relatedMovies[index].mediaUrl),
                           ),
                         ),
                         title: Text(
-                          relatedMovies[index].title +
-                              " - " +
-                              relatedMovies[index].title,
+                          relatedMovies[index].title,
                           style: TextStyle(color: MyColors().cyan),
                         ),
                       );

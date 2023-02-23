@@ -63,7 +63,7 @@ class _MovieProfile extends State<MovieProfile> {
                         text: "Producer: ",
                         style: TextStyle(color: MyColors().cyan, fontSize: 18)),
                     TextSpan(
-                        text: movie.producer,
+                        text: movie.producer.trim(),
                         style: TextStyle(color: Colors.white, fontSize: 18)),
                   ]),
                 )
