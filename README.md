@@ -1,2 +1,2 @@
 # theatrical_plays_ios
- A mobile application about theatrical plays project made using flutter.
+ An iOS mobile application about theatrical plays project made using Flutter Framework.
